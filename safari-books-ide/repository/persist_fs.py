@@ -20,7 +20,6 @@ class PersistFS:
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         logging.info(f"list_dirs {path}")
-
         return os.listdir(path) if Path(path).is_dir() else []
 
     @classmethod

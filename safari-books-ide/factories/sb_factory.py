@@ -29,13 +29,15 @@ class SBFactory:
         logging.info(f"args {args}")
         cmd = args[1]
         if cmd == "create_meta_book":
-            return self.create_meta_book_processor(args[2])
-        if cmd == "refresh_toc":
-            return self.refresh_toc_processor()
-        if cmd == "help":
-            return self.help_processor()
-        logging.info(self.SUPPORTED_PROCESSOR)
-        raise ValueError(f"{cmd} not supported")
+            yield self.create_meta_book_processor(args[2])
+            yield self.refresh_toc_processor()
+        elif cmd == "refresh_toc":
+            yield self.refresh_toc_processor()
+        elif cmd == "help":
+            yield self.help_processor()
+        else:
+            logging.info(self.SUPPORTED_PROCESSOR)
+            raise ValueError(f"{cmd} not supported")
 
     def create_meta_book_processor(self, http_url):
         """create_meta_book_processor"""

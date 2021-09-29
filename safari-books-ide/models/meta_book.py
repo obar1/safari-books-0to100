@@ -39,7 +39,6 @@ class MetaBook:
 
     def get_epub(self):
         """get epub from the web"""
-        self.clean_ebooks()
         self.process_fs.get_epub(self.config_map, self.dir_epub, self.isbn)
         self.persist_fs.copy_file_to(self.get_epub_path(), self.dir_epub)
 
@@ -79,22 +78,14 @@ class MetaBook:
         http_url = http_url.strip('/')
         return http_url[http_url.rfind('/') + 1:]
 
-    def clean_ebooks(self):
-        """del all the ebooks into the folder"""
-        dirs = self.persist_fs.list_dirs(self.config_map.get_download_engine_books_path)
-        valid_dirs = [dir_ for dir_ in dirs if MetaBook.is_valid_ebook_path(dir_)]
-        for dir_ in valid_dirs:
-            assert self.is_valid_ebook_path(dir_)
-            self.persist_fs.delete_folder(dir_)
-
     def get_epub_path(self):
         """find the actual path into the path given the isbn
         dirs are supposed to be like
-        download_engine_books_path/books title(isbn)
+        download_engine_books_path/books title (isbn)
         """
         download_engine_books_path = self.config_map.get_download_engine_books_path
         isbn = self.isbn
         dirs = self.persist_fs.list_dirs(download_engine_books_path)
         dir_isbn = [dir_ for dir_ in dirs if '(' + isbn + ')' in dir_]
-        assert len(dir_isbn) <= 1
+        assert len(dir_isbn) == 1
         return download_engine_books_path + '/' + dir_isbn[0] + '/' + isbn + MetaBook.epub_suffix

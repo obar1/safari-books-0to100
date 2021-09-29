@@ -16,7 +16,8 @@ from repository.process_fs import ProcessFS as process_fs
 def run_main(argv: List[str]):
     process_fs.DEBUG_Y_N = False
     factory: SBFactory = FactoryProvider(persist_fs, process_fs).provide()
-    return factory.get_processor(argv).process()
+    for p in factory.get_processor(argv):
+        p.process()
 
 
 if __name__ == "__main__":

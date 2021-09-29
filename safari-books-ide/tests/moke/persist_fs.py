@@ -19,6 +19,8 @@ class PersistFS(_PersistFS):
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         logging.info(f"list_dirs {path}")
+        if path == "./books":
+            return ['ABC (9781948580793)', 'CDF (9780135956977)']
         if path == "./safaribooks.git/Books":
             return ['The Concise Coaching Handbook (9781948580793)', 'The Pragmatic Programmer (9780135956977)']
         raise ValueError(f"{path} not supported")

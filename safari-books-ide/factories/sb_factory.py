@@ -8,6 +8,7 @@ from configs.config import ConfigMap
 from processors.create_meta_book_processor import CreateMetaBookProcessor
 from processors.help_processor import HelpProcessor
 from processors.refresh_toc_processor import RefreshTocProcessor
+from processors.unsupported_processor import UnsupportedProcessor
 
 
 class SBFactory:
@@ -36,8 +37,7 @@ class SBFactory:
         elif cmd == "help":
             yield self.help_processor()
         else:
-            logging.info(self.SUPPORTED_PROCESSOR)
-            raise ValueError(f"{cmd} not supported")
+            yield self.unsupported_processor(cmd)
 
     def create_meta_book_processor(self, http_url):
         """create_meta_book_processor"""
@@ -50,3 +50,6 @@ class SBFactory:
     def refresh_toc_processor(self):
         """refresh_map_processor"""
         return RefreshTocProcessor(self.config_map, self.persist_fs, self.process_fs)
+
+    def unsupported_processor(self,cmd):
+        return UnsupportedProcessor(cmd)

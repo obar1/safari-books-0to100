@@ -6,8 +6,9 @@ from tests.moke.process_fs import ProcessFS as process_fs
 
 CURR_VERSION = "0.1"
 
+
 def test_process(get_config_map, get_args_help_processor):
-    actual: HelpProcessor = SBFactory(get_config_map, persist_fs,process_fs).get_processor(
+    actual: HelpProcessor = SBFactory(get_config_map, persist_fs, process_fs).get_processor(
         get_args_help_processor
     )
     assert actual.process() == f'{VERSION}"{CURR_VERSION}"'

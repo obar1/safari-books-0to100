@@ -35,9 +35,8 @@ def test_clean_ebooks(get_config_map, http_url):
     MetaBook(get_config_map, persist_fs, process_fs, http_url).clean_ebooks()
 
 
-def test_get_epub_path(get_config_map, http_url,http_url_isbn):
+def test_get_epub_path(get_config_map, http_url, http_url_isbn):
     actual = MetaBook(get_config_map, persist_fs, process_fs, http_url).get_epub_path()
     from pprint import pprint
     pprint(actual)
-    assert str(actual).endswith(http_url_isbn+MetaBook.epub_suffix)
-
+    assert str(actual).endswith(http_url_isbn + MetaBook.epub_suffix)

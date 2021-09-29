@@ -51,8 +51,6 @@ class Toc:
             "".join(flattened_meta_book)
         )
 
-
-
     @classmethod
     def build_from_dirs(cls, config_map, persist_fs, process_fs, dirs: List[str]) -> List[MetaBook]:
         """from a list of dirs created return the a MetaBook

@@ -5,20 +5,23 @@ mocked in Test
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 import logging
 import os
-from typing import List
-import yaml
+from pathlib import Path
 from shutil import copyfile
+from typing import List
+
+import yaml
+
 
 class PersistFS:
     """persist_fs."""
 
     relative_path_starts_with = "./"
 
-
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         logging.info(f"list_dirs {path}")
-        return os.listdir(path)
+
+        return os.listdir(path) if Path(path).is_dir() else []
 
     @classmethod
     def get_dir_name(cls, filename):
@@ -40,7 +43,7 @@ class PersistFS:
     @classmethod
     def create_file(cls, filename):
         logging.info(f"create_file {filename}")
-        return cls.write_file(filename,[])
+        return cls.write_file(filename, [])
 
     @classmethod
     def make_dirs(cls, path):
@@ -59,12 +62,10 @@ class PersistFS:
             lines = file_.readlines()
             return lines
 
-
     @classmethod
     def delete_folder(cls, path):
         logging.info(f"delete_folder {path}")
         return os.rmdir(path)
-
 
     @classmethod
     def copy_file_to(cls, file_path, path_to):

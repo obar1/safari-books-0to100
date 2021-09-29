@@ -14,7 +14,8 @@ from repository.process_fs import ProcessFS as process_fs
 
 
 def run_main(argv: List[str]):
-    factory: SBFactory = FactoryProvider(persist_fs,process_fs).provide()
+    process_fs.DEBUG_Y_N = False
+    factory: SBFactory = FactoryProvider(persist_fs, process_fs).provide()
     return factory.get_processor(argv).process()
 
 
@@ -27,3 +28,4 @@ if __name__ == "__main__":
         run_main(["", "help"])
     except Exception as e:
         logging.critical(f"??? check the params {sys.argv} {e}")
+        raise e

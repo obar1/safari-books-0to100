@@ -4,22 +4,18 @@ mocked in Test
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 import logging
-import os
-import re
-from typing import List
-
-import yaml
-
-from configs.config import ConfigMap
-from processors.help_processor import ROOT_DIR
-from subprocess import PIPE, run
 import shlex
 import subprocess
+from subprocess import PIPE, run
+
+from configs.config import ConfigMap
+
 
 class ProcessFS:
     """Process_fs."""
 
-    DEBUG_Y_N=True
+    DEBUG_Y_N = True
+
     @classmethod
     def debug_y_n(cls):
         DEBUG_ME = 'echo'
@@ -27,13 +23,13 @@ class ProcessFS:
         return DEBUG_ME if cls.DEBUG_Y_N else DEBUG_ME_NOT
 
     @classmethod
-    def get_img(cls, dir_img,  http_url_img):
+    def get_img(cls, dir_img, http_url_img):
         logging.info(f"get_img  {dir_img} {http_url_img}")
         cmd = f"{cls.debug_y_n()} curl -o  {dir_img}  {http_url_img}"
         subprocess.call(shlex.split(cmd))
 
     @classmethod
-    def get_epub(cls, config_map:ConfigMap, dir_epub, isbn):
+    def get_epub(cls, config_map: ConfigMap, dir_epub, isbn):
         logging.info(f"get_epub {dir_epub} {isbn}")
         cls.download_epub(config_map, isbn)
 
@@ -45,5 +41,3 @@ class ProcessFS:
         logging.info(result.stdout)
         logging.info(result.stderr)
         assert result.returncode == 0
-
-

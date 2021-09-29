@@ -10,7 +10,7 @@ import pytest
 from configs.config import ConfigMap
 from factories.factory_provider import CONFIG_FILE
 from tests.moke.persist_fs import PersistFS as persist_fs
-from pprint import pprint
+
 
 @pytest.fixture(scope="session", autouse=True)
 def callattr_ahead_of_alltests():
@@ -27,9 +27,11 @@ def wip():
 def http_url():
     yield "https://learning.oreilly.com/library/view/the-pragmatic-programmer/9780135956977/"
 
+
 @pytest.fixture
 def http_url_isbn():
     yield "9780135956977"
+
 
 @pytest.fixture
 def http_url_2():
@@ -51,27 +53,33 @@ def get_resource_path(get_test_path):
 def get_repo_path(get_resource_path):
     yield get_resource_path + "/books"
 
+
 @pytest.fixture
 def get_map_yaml_path(get_resource_path):
     yield get_resource_path + "/map.yaml"
+
 
 @pytest.fixture
 def get_unsupported_map_yaml_path(get_resource_path):
     yield get_resource_path + "/unsupported_map.yaml"
 
+
 @pytest.fixture
 def get_secret_yaml_path(get_resource_path):
     yield get_resource_path + "/secret.yaml"
+
 
 @pytest.fixture
 def mock_settings_env_vars(get_map_yaml_path):
     with mock.patch.dict(os.environ, {CONFIG_FILE: get_map_yaml_path}):
         yield
 
+
 @pytest.fixture
 def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
     with mock.patch.dict(os.environ, {CONFIG_FILE: get_unsupported_map_yaml_path}):
         yield
+
 
 @pytest.fixture
 def mock_secret_yaml_env_vars(get_secret_yaml_path):

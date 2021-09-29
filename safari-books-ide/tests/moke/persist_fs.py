@@ -9,6 +9,7 @@ from typing import List
 
 from repository.persist_fs import PersistFS as _PersistFS
 
+
 class PersistFS(_PersistFS):
     """persist_fs."""
 
@@ -18,7 +19,7 @@ class PersistFS(_PersistFS):
     @classmethod
     def list_dirs(cls, path) -> List[str]:
         logging.info(f"list_dirs {path}")
-        if path=="./safaribooks.git/Books":
+        if path == "./safaribooks.git/Books":
             return ['The Concise Coaching Handbook (9781948580793)', 'The Pragmatic Programmer (9780135956977)']
         raise ValueError(f"{path} not supported")
 
@@ -35,7 +36,9 @@ class PersistFS(_PersistFS):
         if config_file.endswith("map.yaml"):
             return {
                 "type": "safari-books",
-                "configs": { "books_path": "./books", "download_engine_path": './safaribooks.git/safaribooks.py',"download_engine_books_path": "./safaribooks.git/Books","oreilly_username":'username','oreilly_userpassword':'userpassword'  },
+                "configs": {"books_path": "./books", "download_engine_path": './safaribooks.git/safaribooks.py',
+                            "download_engine_books_path": "./safaribooks.git/Books", "oreilly_username": 'username',
+                            'oreilly_userpassword': 'userpassword'},
             }
         raise ValueError(f"{config_file} not supported")
 
@@ -47,7 +50,7 @@ class PersistFS(_PersistFS):
     @classmethod
     def create_file(cls, filename):
         logging.info(f"create_file {filename}")
-        return cls.write_file(filename,[])
+        return cls.write_file(filename, [])
 
     @classmethod
     def make_dirs(cls, path):
@@ -73,7 +76,6 @@ https://cloud.google.com/products\n
     def delete_folder(cls, path):
         logging.info(f"delete_folder {path}")
         return None
-
 
     @classmethod
     def copy_file_to(cls, file_path, path_to):

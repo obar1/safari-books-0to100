@@ -18,6 +18,6 @@ def get_args_get_processor():
 
 
 def test_get_processor(get_config_map, get_args_get_processor):
-    actual = SBFactory(get_config_map, persist_fs,process_fs)
+    actual = SBFactory(get_config_map, persist_fs, process_fs)
     with pytest.raises(ValueError):
         actual.get_processor(get_args_get_processor)

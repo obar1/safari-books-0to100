@@ -3,18 +3,16 @@
 import pytest
 
 from models.meta_book import MetaBook
-from tests.moke.persist_fs import PersistFS as persist_fs
 from validator.validator import Validator
-
 
 
 def test_is_valid_http__pass__fail():
     # pass
     assert (
-        Validator.is_valid_http(
-            MetaBook.GENERIC_HTTP_OREILLY
-        )
-        == MetaBook.GENERIC_HTTP_OREILLY
+            Validator.is_valid_http(
+                MetaBook.GENERIC_HTTP_OREILLY
+            )
+            == MetaBook.GENERIC_HTTP_OREILLY
     )
     # fail
     with pytest.raises(AssertionError):

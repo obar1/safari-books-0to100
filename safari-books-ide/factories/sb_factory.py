@@ -18,11 +18,11 @@ class SBFactory:
         "help",
     ]
 
-    def __init__(self, config_map: ConfigMap, persist_fs,process_fs):
+    def __init__(self, config_map: ConfigMap, persist_fs, process_fs):
         """init"""
         self.config_map = config_map
         self.persist_fs = persist_fs
-        self.process_fs=process_fs
+        self.process_fs = process_fs
 
     def get_processor(self, args):
         """get the processor"""
@@ -47,6 +47,4 @@ class SBFactory:
 
     def refresh_toc_processor(self):
         """refresh_map_processor"""
-        return RefreshTocProcessor(self.config_map, self.persist_fs,self.process_fs)
-
-
+        return RefreshTocProcessor(self.config_map, self.persist_fs, self.process_fs)

@@ -28,7 +28,7 @@ class Toc:
 1. <0596007124> ![`img`](../books/0596007124/0596007124.png) :o: [`pdf`](../books/0596007124/0596007124.pdf) :o: [`epub`](../books/0596007124/0596007124.epub) :o: [`json`](../books/0596007124/0596007124.json)
 """
         flatten_meta_book = (
-            lambda s: f"""|  `{s.isbn}` 	|  ![`img`]({s.dir_img}) 	| [`epub`]({s.dir_epub})  	|  [`pdf`]({s.dir_pdf}) 	| [`json`]({s.dir_json})  	|""")
+            lambda s: f"""| <span style="color:blue">**{s.isbn}**</span>	|  ![`img`]({s.dir_img}) 	| [`epub`]({s.dir_epub})  	|  [`pdf`]({s.dir_pdf}) 	| [`json`]({s.dir_json})  	|""")
         flattened_meta_book = list(map(flatten_meta_book, meta_books))
         return (
             "\n".join(flattened_meta_book)
@@ -56,7 +56,8 @@ table
         txt.append(
             f"""
 # TOC 
-## `{self.persist_fs.get_now()}`
+## `{len(self.meta_books)}` books 
+### {self.persist_fs.get_now()}
 |  ISBN 	|   	|   	|   	|   	|
 |---	|---	|---	|---	|---	|
 {self.__repr_flatten(self.meta_books)}

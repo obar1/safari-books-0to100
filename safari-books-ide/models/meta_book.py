@@ -62,10 +62,8 @@ class MetaBook:
         )
         self.persist_fs.make_dirs(self.contents_path)
         self.persist_fs.write_file(self.dir_json, txt)
-        # self.persist_fs.create_file(self.dir_epub)
         self.get_epub()
         self.persist_fs.create_file(self.dir_pdf)
-        # self.persist_fs.create_file(self.dir_img)
         self.get_img()
 
     def read_json(self):

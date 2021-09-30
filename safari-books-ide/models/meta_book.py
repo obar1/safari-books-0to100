@@ -33,14 +33,30 @@ class MetaBook:
         """build from dir"""
         return MetaBook(config_map, persist_fs, process_fs, http_url=cls.GENERIC_HTTP_OREILLY + '/' + dir_name)
 
-    def get_img(self):
+    def write_img(self):
         """get img from the web"""
-        self.process_fs.get_img(self.dir_img, f"{self.HTTP_OREILLY}/{self.isbn}/")
+        self.process_fs.write_img(self.dir_img, f"{self.HTTP_OREILLY}/{self.isbn}/")
 
-    def get_epub(self):
+    def write_epub(self):
         """get epub from the web"""
-        self.process_fs.get_epub(self.config_map, self.dir_epub, self.isbn)
+        self.process_fs.write_epub(self.config_map, self.dir_epub, self.isbn)
         self.persist_fs.copy_file_to(self.get_epub_path(), self.dir_epub)
+
+    def write_json(self):
+        """write json
+        {
+            "isbn": "0596007124",
+            "http_url": "https://learning.oreilly.com/library/view/head-first-design/0596007124/"
+        }
+        """
+        txt = []
+        txt.append(
+            f"""{{
+        "isbn": "{self.isbn}",
+        "http_url": "{self.http_url}"
+                }}"""
+        )
+        self.persist_fs.write_file(self.dir_json, txt)
 
     @staticmethod
     def is_valid_ebook_path(ebook_folder):
@@ -48,23 +64,19 @@ class MetaBook:
         return re.match(r'[0-9]+', ebook_folder)
 
     def write(self):
-        """write to fs"""
-        # {
-        #     "isbn": "0596007124",
-        #     "http_url": "https://learning.oreilly.com/library/view/head-first-design/0596007124/"
-        # }
-        txt = []
-        txt.append(
-            f"""{{
-"isbn": "{self.isbn}",
-"http_url": "{self.http_url}"
-        }}"""
-        )
+        """write to fs
+        dir with
+        json
+        epub
+        pdf
+        img
+        """
+
         self.persist_fs.make_dirs(self.contents_path)
-        self.persist_fs.write_file(self.dir_json, txt)
-        self.get_epub()
-        self.persist_fs.create_file(self.dir_pdf)
-        self.get_img()
+        self.write_json()
+        self.write_epub()
+        self.write_fake_pdf()
+        self.write_img()
 
     def read_json(self):
         return self.persist_fs.read_file(self.dir_json)
@@ -87,3 +99,6 @@ class MetaBook:
         dir_isbn = [dir_ for dir_ in dirs if '(' + isbn + ')' in dir_]
         assert len(dir_isbn) == 1
         return download_engine_books_path + '/' + dir_isbn[0] + '/' + isbn + MetaBook.epub_suffix
+
+    def write_fake_pdf(self):
+        self.persist_fs.create_file(self.dir_pdf)

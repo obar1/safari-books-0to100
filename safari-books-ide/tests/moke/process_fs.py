@@ -12,9 +12,9 @@ class ProcessFS(_ProcessFS):
     """Process_fs."""
 
     @classmethod
-    def get_img(cls, dir_img, http_url_img):
-        logging.info(f"get_img  {dir_img} {http_url_img}")
+    def write_img(cls, dir_img, http_url_img):
+        logging.info(f"write_img  {dir_img} {http_url_img}")
 
     @classmethod
-    def get_epub(cls, config_map, dir_epub, isbn):
-        logging.info(f"get_epub  {dir_epub} {isbn}")
+    def write_epub(cls, config_map, dir_epub, isbn):
+        logging.info(f"write_epub  {dir_epub} {isbn}")

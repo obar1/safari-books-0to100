@@ -23,14 +23,14 @@ class ProcessFS:
         return DEBUG_ME if cls.DEBUG_Y_N else DEBUG_ME_NOT
 
     @classmethod
-    def get_img(cls, dir_img, http_url_img):
-        logging.info(f"get_img  {dir_img} {http_url_img}")
+    def write_img(cls, dir_img, http_url_img):
+        logging.info(f"write_img  {dir_img} {http_url_img}")
         cmd = f"{cls.debug_y_n()} curl -o  {dir_img}  {http_url_img}"
         subprocess.call(shlex.split(cmd))
 
     @classmethod
-    def get_epub(cls, config_map: ConfigMap, dir_epub, isbn):
-        logging.info(f"get_epub {dir_epub} {isbn}")
+    def write_epub(cls, config_map: ConfigMap, dir_epub, isbn):
+        logging.info(f"write_epub {dir_epub} {isbn}")
         cls.download_epub(config_map, isbn)
 
     @classmethod

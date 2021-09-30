@@ -42,7 +42,7 @@ check contents of  `yaml` file for the download engine and oreilly usr/pwd
 ```bash
 cat map.yaml
 ```
-![](2021-09-30-11-16-19.png)
+![](0c5c6efa-7588-496d-b61f-d760ace537dc.png)
 
 ## Daily usage
 
@@ -52,13 +52,20 @@ cat map.yaml
 url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/020161622X/
 bash runme.sh create_meta_book $url
 ```
-![](2021-09-30-13-44-47.png)
+![](5a68dd6b-e08c-4953-befe-8571054076b4.png)
 
 ```bash
-open -a "Google Chrome" toc.md
+open -a "Brave Browser" toc.md 
 ```
 
-![](2021-09-30-13-41-21.png)
+> using `Markdown Viewer` extension  https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk
+
+![](7e6c7942-b5c6-46bb-a153-8715fb08cc8c.png)
+
+
+> using `EPUBReder` https://www.epubread.com/en/
+
+![](91b3f07a-99b1-46cc-8c3d-cec62d778ff9.png)
 
 - help
 

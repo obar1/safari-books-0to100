@@ -1,27 +1,29 @@
-# pyproject-template
+# safari books 0 to 100
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fobar1%2F0to100.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fobar1%2F0to100?ref=badge_shield)
+simple way to keep books organized 
 
-simple `pyproject` template with processor and factory and fake perist-fs
 
-## Usage
+## Installation
 
-### using the py scripts
+## Py Env
+* Activate your py env
+* Install Poetry: <https://python-poetry.org/docs/#installation>
+* Install package and dependencies: `poetry install`
 
-#### 1-time (manual) setup
+## 1-time Setup
 
-check latest tag val latest at https://github.com/obar1/pyproject-template/tags
+check latest tag val latest at https://github.com/obar1/safari-books-0to100/tags
 
-or https://raw.githubusercontent.com/obar1/pyproject-template/main/changelog.md like so
+or https://raw.githubusercontent.com/obar1/safari-books-0to100/master/changelog.md like so
 
 ```bash
-curl https://raw.githubusercontent.com/obar1/pyproject-template/main/changelog.md | grep version | sort -r | head -1
+curl https://raw.githubusercontent.com/obar1/safari-books-0to100/master/changelog.md | grep version | sort -r | head -1
 ```
 
 in a any tmp folder get the `setup.sh` like so
 
 ```bash
-wget -q https://raw.githubusercontent.com/obar1/pyproject-template/main/setup.sh
+wget -q https://raw.githubusercontent.com/obar1/safari-books-0to100/master/setup.sh
 ```
 
 and use it like so
@@ -34,17 +36,21 @@ target_dir=
 
 bash setup.sh $tag $target_dir
 ```
-> check contents `runme.sh`
+check contents of  `yaml` file for the download engine and oreilly usr/pwd
 
-#### daily usage
+```bash
+cat map.yaml
+```
+![](2021-09-30-11-16-19.png)
+
+## Daily usage
 
 -  create new meta_book
 
 ```bash
-url=https://cloud.google.com/docs
+url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/020161622X/
 bash runme.sh create_meta_book $url
-url=https://cloud.google.com/help
-bash runme.sh create_meta_book $url
+
 #...etc
 ```
 
@@ -60,7 +66,7 @@ bash runme.sh help
 
 * Install Poetry: <https://python-poetry.org/docs/#installation>
 * Install python env: `pyenv install 3.7.0`
-* Install virtual env: `pyenv virtualenv 3.7.0 pip_mse_ingestion`
+* Install virtual env: `pyenv virtualenv 3.7.0 py37`
 * Activate virtual env: `pyenv activate py37`
 * Install package and dependencies: `poetry install`
 * Install pre-commit hooks: `poetry run pre-commit install`
@@ -98,6 +104,3 @@ so you can test local fix :)
 ```bash
 export PYTHONPATH=. && ptw -c  -- --capture=tee-sys -o log_cli=true
 ```
-
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fobar1%2F0to100.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fobar1%2F0to100?ref=badge_large)

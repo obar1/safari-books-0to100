@@ -13,14 +13,16 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))  # This is your Project Ro
 class HelpProcessor:
     """HelpProcessor"""
 
-    def __init__(self, supported_processor):
+    def __init__(self, supported_processor,persist_fs):
+        """init"""
         self.supported_processor = supported_processor
+        self.persist_fs = persist_fs
 
     @property
     def get_version(self):
         """read file and return the version"""
         change_log_relative_path = "../../changelog.md"
-        change_log_path = os.path.abspath(
+        change_log_path = self.persist_fs.abs_path(
             os.path.join(ROOT_DIR, change_log_relative_path)
         )
         try:

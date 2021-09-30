@@ -16,6 +16,7 @@ class SBFactory:
 
     SUPPORTED_PROCESSOR = [
         "create_meta_book",
+        "refresh_toc",
         "help",
     ]
 

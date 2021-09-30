@@ -7,8 +7,9 @@ import logging
 
 class UnsupportedProcessor:
     """UnsupportedProcessor"""
-    def __init__(self,cmd):
-        self.cmd =cmd
+
+    def __init__(self, cmd):
+        self.cmd = cmd
 
     def process(self):
         """Get version."""

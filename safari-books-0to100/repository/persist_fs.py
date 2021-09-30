@@ -8,7 +8,7 @@ import os
 from pathlib import Path
 from shutil import copyfile
 from typing import List
-
+from datetime import datetime
 import yaml
 
 
@@ -50,9 +50,8 @@ class PersistFS:
         if os.path.isdir(path):
             logging.info(f"_skip {path}")
             return None
-        else:
-            logging.info(f"_create {path}")
-            return os.makedirs(path, 0o777, False)
+        logging.info(f"_create {path}")
+        return os.makedirs(path, 0o777, False)
 
     @classmethod
     def read_file(cls, filename) -> List[str]:
@@ -73,11 +72,12 @@ class PersistFS:
 
     @classmethod
     def abs_path(cls, path):
-        logging.info(f"abs_path {path}")
-        return os.path.abspath(path)
+        abs_path = os.path.abspath(path)
+        assert abs_path is not None
+        logging.info(f"abs_path {abs_path}")
+        return abs_path
 
     @classmethod
     def get_now(cls):
-        from datetime import datetime
         now = datetime.now()
         return now.strftime("%Y/%m/%d-%H:%M:%S")

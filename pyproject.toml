@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "zero_to_one_hundred"
+name = "safari-books-0to100"
 version = "0.1.0"
-description = "0to100 to learn anything"
+description = "safari books 0to100 to learn anything"
 authors = ["obar1 <obar1@pm.me>"]
 
 [tool.poetry.dependencies]

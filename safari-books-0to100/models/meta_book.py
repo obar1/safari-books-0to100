@@ -1,5 +1,5 @@
 """MetaBook:"""
-# pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
+# pylint: disable=R0902,W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 import re
 
 from configs.config import ConfigMap
@@ -7,9 +7,10 @@ from configs.config import ConfigMap
 
 class MetaBook:
     """MetaBook."""
-    epub_suffix = '.epub'
-    HTTP_OREILLY = 'https://learning.oreilly.com/library/cover'
-    GENERIC_HTTP_OREILLY = 'https://learning.oreilly.com/library/'
+
+    epub_suffix = ".epub"
+    HTTP_OREILLY = "https://learning.oreilly.com/library/cover"
+    GENERIC_HTTP_OREILLY = "https://learning.oreilly.com/library/"
 
     def __init__(self, config_map: ConfigMap, persist_fs, process_fs, http_url: str):
         """init"""
@@ -18,7 +19,7 @@ class MetaBook:
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.isbn = self.__get_isbn(http_url)
-        self.contents_path = config_map.get_books_path + f'/{self.isbn}'
+        self.contents_path = config_map.get_books_path + f"/{self.isbn}"
         self.dir_json = f"{self.contents_path}/{self.isbn}.json"
         self.dir_epub = f"{self.contents_path}/{self.isbn}.epub"
         self.dir_pdf = f"{self.contents_path}/{self.isbn}.pdf"
@@ -31,7 +32,12 @@ class MetaBook:
     @classmethod
     def build_from_dir(cls, config_map, persist_fs, process_fs, dir_name):
         """build from dir"""
-        return MetaBook(config_map, persist_fs, process_fs, http_url=cls.GENERIC_HTTP_OREILLY + '/' + dir_name)
+        return MetaBook(
+            config_map,
+            persist_fs,
+            process_fs,
+            http_url=cls.GENERIC_HTTP_OREILLY + "/" + dir_name,
+        )
 
     def write_img(self):
         """get img from the web"""
@@ -61,17 +67,17 @@ class MetaBook:
     @staticmethod
     def is_valid_ebook_path(ebook_folder):
         """check folder is 0123..9 like ISBN"""
-        return re.match(r'[0-9]+', ebook_folder)
+        return re.match(r"^[0-9]+", ebook_folder)
 
     def write(self):
-        """write to fs
+        """
+        write to fs
         dir with
         json
         epub
         pdf
         img
         """
-
         self.persist_fs.make_dirs(self.contents_path)
         self.write_json()
         self.write_epub()
@@ -81,12 +87,13 @@ class MetaBook:
     def read_json(self):
         return self.persist_fs.read_file(self.dir_json)
 
-    def __get_isbn(self, http_url):
+    @staticmethod
+    def __get_isbn(http_url):
         """get isbn
         it's the last 0123456..9
         """
-        http_url = http_url.strip('/')
-        return http_url[http_url.rfind('/') + 1:]
+        http_url = http_url.strip("/")
+        return http_url[http_url.rfind("/") + 1 :]
 
     def get_epub_path(self):
         """find the actual path into the path given the isbn
@@ -96,9 +103,16 @@ class MetaBook:
         download_engine_books_path = self.config_map.get_download_engine_books_path
         isbn = self.isbn
         dirs = self.persist_fs.list_dirs(download_engine_books_path)
-        dir_isbn = [dir_ for dir_ in dirs if '(' + isbn + ')' in dir_]
+        dir_isbn = [dir_ for dir_ in dirs if "(" + isbn + ")" in dir_]
         assert len(dir_isbn) == 1
-        return download_engine_books_path + '/' + dir_isbn[0] + '/' + isbn + MetaBook.epub_suffix
+        return (
+            download_engine_books_path
+            + "/"
+            + dir_isbn[0]
+            + "/"
+            + isbn
+            + MetaBook.epub_suffix
+        )
 
     def write_fake_pdf(self):
         self.persist_fs.create_file(self.dir_pdf)

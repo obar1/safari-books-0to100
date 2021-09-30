@@ -20,15 +20,17 @@ class PersistFS(_PersistFS):
     def list_dirs(cls, path) -> List[str]:
         logging.info(f"list_dirs {path}")
         if path == "./books":
-            return ['ABC (9781948580793)', 'CDF (9780135956977)']
+            return ["ABC (9781948580793)", "CDF (9780135956977)"]
         if path == "./safaribooks.git/Books":
-            return ['The Concise Coaching Handbook (9781948580793)', 'The Pragmatic Programmer (9780135956977)']
+            return [
+                "The Concise Coaching Handbook (9781948580793)",
+                "The Pragmatic Programmer (9780135956977)",
+            ]
         raise ValueError(f"{path} not supported")
 
     @classmethod
     def get_dir_name(cls, filename):
         logging.info(f"get_dir_name {filename}")
-        return None
 
     @classmethod
     def load_file(cls, config_file):
@@ -38,16 +40,19 @@ class PersistFS(_PersistFS):
         if config_file.endswith("map.yaml"):
             return {
                 "type": "safari-books",
-                "configs": {"books_path": "./books", "download_engine_path": './safaribooks.git/safaribooks.py',
-                            "download_engine_books_path": "./safaribooks.git/Books", "oreilly_username": 'username',
-                            'oreilly_userpassword': 'userpassword'},
+                "configs": {
+                    "books_path": "./books",
+                    "download_engine_path": "./safaribooks.git/safaribooks.py",
+                    "download_engine_books_path": "./safaribooks.git/Books",
+                    "oreilly_username": "username",
+                    "oreilly_userpassword": "userpassword",
+                },
             }
         raise ValueError(f"{config_file} not supported")
 
     @classmethod
     def write_file(cls, filename, txt):
         logging.info(f"write_file {filename} {txt}")
-        return None
 
     @classmethod
     def create_file(cls, filename):
@@ -57,7 +62,6 @@ class PersistFS(_PersistFS):
     @classmethod
     def make_dirs(cls, path):
         logging.info(f"make_dirs {path}")
-        return None
 
     @classmethod
     def read_file(cls, filename) -> List[str]:
@@ -77,12 +81,10 @@ https://cloud.google.com/products\n
     @classmethod
     def delete_folder(cls, path):
         logging.info(f"delete_folder {path}")
-        return None
 
     @classmethod
     def copy_file_to(cls, file_path, path_to):
         logging.info(f"copy_file_to {file_path} {path_to}")
-        return None
 
     @classmethod
     def abs_path(cls, path):

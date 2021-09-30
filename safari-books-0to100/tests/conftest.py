@@ -116,6 +116,7 @@ def get_args_refresh_puml_processor():
 def get_args_help_processor():
     return ["runme.sh", "help"]
 
+
 @pytest.fixture
 def get_args_unsupported_processor():
     return ["runme.sh", "something"]

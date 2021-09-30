@@ -46,7 +46,7 @@ class SBFactory:
 
     def help_processor(self):
         """version_processor"""
-        return HelpProcessor(self.SUPPORTED_PROCESSOR)
+        return HelpProcessor(self.SUPPORTED_PROCESSOR,self.persist_fs)
 
     def refresh_toc_processor(self):
         """refresh_map_processor"""

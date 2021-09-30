@@ -29,13 +29,13 @@ class HelpProcessor:
             with open(change_log_path, mode="r", encoding="UTF-8") as file_change_log:
                 txt = file_change_log.readlines()
                 version = max(sorted(filter(lambda f: VERSION in f, txt)))
-                logging.info(f"v. {version}")
+                logging.debug(f"v. {version}")
                 return version.strip()
         except FileNotFoundError:
-            logging.info(f"skipping {change_log_path}")
+            logging.exception(f"skipping {change_log_path}")
         return None
 
     def process(self):
         """Get version."""
-        logging.info(self.supported_processor)
+        logging.debug(self.supported_processor)
         return self.get_version

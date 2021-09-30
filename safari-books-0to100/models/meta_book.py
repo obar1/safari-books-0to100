@@ -61,7 +61,7 @@ class MetaBook:
     @staticmethod
     def is_valid_ebook_path(ebook_folder):
         """check folder is 0123..9 like ISBN"""
-        return re.match(r'[0-9]+', ebook_folder)
+        return re.match(r'^[0-9]+', ebook_folder)
 
     def write(self):
         """write to fs

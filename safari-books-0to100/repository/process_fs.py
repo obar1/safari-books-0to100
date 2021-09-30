@@ -37,6 +37,6 @@ class ProcessFS:
     def download_epub(cls, config_map, isbn):
         logging.info(f"download_epub {isbn}")
         cmd = f"{cls.debug_y_n()} python {config_map.get_download_engine_path} --cred {config_map.get_oreilly_username}:{config_map.get_oreilly_userpassword} {isbn}"
-        result = subprocess.run(cmd.split())
-        assert result.returncode == 0
+        subprocess.run(cmd.split())
+
 

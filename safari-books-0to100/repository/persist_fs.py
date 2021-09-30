@@ -73,8 +73,10 @@ class PersistFS:
 
     @classmethod
     def abs_path(cls, path):
-        logging.info(f"abs_path {path}")
-        return os.path.abspath(path)
+        abs_path=os.path.abspath(path)
+        assert abs_path is not None
+        logging.info(f"abs_path {abs_path}")
+        return abs_path
 
     @classmethod
     def get_now(cls):

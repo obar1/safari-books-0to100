@@ -2,7 +2,6 @@
 
 simple way to keep books organized 
 
-
 ## Installation
 
 ## Py Env
@@ -10,7 +9,9 @@ simple way to keep books organized
 * Install Poetry: <https://python-poetry.org/docs/#installation>
 * Install package and dependencies: `poetry install`
 
-## 1-time Setup
+* Install https://github.com/lorenzodifuccia/safaribooks :)
+
+## One-time Setup
 
 check latest tag val latest at https://github.com/obar1/safari-books-0to100/tags
 
@@ -50,9 +51,14 @@ cat map.yaml
 ```bash
 url=https://learning.oreilly.com/library/view/hunt-the-pragmatic-programmer/020161622X/
 bash runme.sh create_meta_book $url
-
-#...etc
 ```
+![](2021-09-30-13-44-47.png)
+
+```bash
+open -a "Google Chrome" toc.md
+```
+
+![](2021-09-30-13-41-21.png)
 
 - help
 

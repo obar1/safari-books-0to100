@@ -14,18 +14,15 @@ from repository.process_fs import ProcessFS as process_fs
 
 
 def run_main(argv: List[str]):
-    factory: SBFactory = FactoryProvider(persist_fs, process_fs).provide()
-    for p in factory.get_processor(argv):
-        p.process()
-
+    try:
+        factory: SBFactory = FactoryProvider(persist_fs, process_fs).provide()
+        for p in factory.get_processor(argv):
+            p.process()
+    except IndexError:
+        logging.critical(f"check the params {sys.argv}")
+    except ModuleNotFoundError:
+        logging.critical(f"??? have you installed all the dep")
 
 if __name__ == "__main__":
-    try:
-        logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
+        logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.DEBUG)
         run_main(sys.argv)
-    except IndexError:
-        logging.info(f"check the params {sys.argv}")
-        run_main(["", "help"])
-    except Exception as e:
-        logging.critical(f"??? check the params {sys.argv} {e}")
-        raise e

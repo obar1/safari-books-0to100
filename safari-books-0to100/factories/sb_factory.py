@@ -42,15 +42,18 @@ class SBFactory:
 
     def create_meta_book_processor(self, http_url):
         """create_meta_book_processor"""
-        return CreateMetaBookProcessor(self.config_map, self.persist_fs, http_url, self.process_fs)
+        return CreateMetaBookProcessor(
+            self.config_map, self.persist_fs, http_url, self.process_fs
+        )
 
     def help_processor(self):
         """version_processor"""
-        return HelpProcessor(self.SUPPORTED_PROCESSOR,self.persist_fs)
+        return HelpProcessor(self.SUPPORTED_PROCESSOR, self.persist_fs)
 
     def refresh_toc_processor(self):
         """refresh_map_processor"""
         return RefreshTocProcessor(self.config_map, self.persist_fs, self.process_fs)
 
-    def unsupported_processor(self,cmd):
+    @staticmethod
+    def unsupported_processor(cmd):
         return UnsupportedProcessor(cmd)

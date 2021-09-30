@@ -1,6 +1,6 @@
 # safari books 0 to 100
 
-simple way to keep books organized 
+simple way to keep books organized
 
 ## Installation
 
@@ -55,7 +55,7 @@ bash runme.sh create_meta_book $url
 ![](5a68dd6b-e08c-4953-befe-8571054076b4.png)
 
 ```bash
-open -a "Brave Browser" toc.md 
+open -a "Brave Browser" toc.md
 ```
 
 > using `Markdown Viewer` extension  https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk

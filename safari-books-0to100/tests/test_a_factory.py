@@ -12,5 +12,6 @@ from tests.moke.process_fs import ProcessFS as process_fs
 def get_config_map(get_map_yaml_path):
     return ConfigMap(get_map_yaml_path, persist_fs)
 
-def test_get_processor(get_config_map, get_args_unsupported_processor):
+
+def test_get_processor(get_config_map):
     SBFactory(get_config_map, persist_fs, process_fs)

@@ -19,5 +19,7 @@ class CreateMetaBookProcessor:
 
     def process(self):
         """Process the meta_book"""
-        meta_book: MetaBook = MetaBook(self.config_map, self.persist_fs, self.process_fs, self.http_url)
+        meta_book: MetaBook = MetaBook(
+            self.config_map, self.persist_fs, self.process_fs, self.http_url
+        )
         meta_book.write()

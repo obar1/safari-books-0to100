@@ -5,5 +5,3 @@ configs:
   download_engine_books_path: '/Users/some_path/safaribooks.git/Books'
   oreilly_username: 'username'
   oreilly_userpassword: 'userpassword'
-
-

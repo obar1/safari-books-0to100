@@ -21,8 +21,9 @@ def run_main(argv: List[str]):
     except IndexError:
         logging.critical(f"check the params {sys.argv}")
     except ModuleNotFoundError:
-        logging.critical(f"??? have you installed all the dep")
+        logging.critical("??? have you installed all the dep")
+
 
 if __name__ == "__main__":
-        logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.DEBUG)
-        run_main(sys.argv)
+    logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.DEBUG)
+    run_main(sys.argv)

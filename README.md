@@ -2,15 +2,6 @@
 
 simple way to keep books organized
 
-## Installation
-
-## Py Env
-* Activate your py env
-* Install Poetry: <https://python-poetry.org/docs/#installation>
-* Install package and dependencies: `poetry install`
-
-* Install https://github.com/lorenzodifuccia/safaribooks :)
-
 ## One-time Setup
 
 check latest tag val latest at https://github.com/obar1/safari-books-0to100/tags
@@ -43,6 +34,17 @@ check contents of  `yaml` file for the download engine and oreilly usr/pwd
 cat map.yaml
 ```
 ![](0c5c6efa-7588-496d-b61f-d760ace537dc.png)
+
+
+### Py Env
+* Activate your py env
+* Install Poetry: <https://python-poetry.org/docs/#installation>
+* Install package and dependencies: `poetry install`
+
+![](b9779202-502a-42e6-a1d6-48d4ea7d1e60.png)
+
+* Install https://github.com/lorenzodifuccia/safaribooks :)
+> don't forget pip install req :P he is not using poetry
 
 ## Daily usage
 

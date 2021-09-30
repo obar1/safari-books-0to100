@@ -6,10 +6,9 @@ mocked in Test
 import logging
 import shlex
 import subprocess
-from subprocess import PIPE, run
 
 from configs.config import ConfigMap
-import subprocess
+
 
 class ProcessFS:
     """Process_fs."""

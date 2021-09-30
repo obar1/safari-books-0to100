@@ -23,16 +23,15 @@ EOF
 
 get_code(){
   h1 "getting $1 in $2"
-  ZEROto100=0to100
+  ZEROto100=safari-books-0to100
   TAG="${1}"
   DIR_TARGET="${2}"
   DIR_TARGET_LATEST="${2}/${ZEROto100}-latest"
 
   mkdir -p "${DIR_TARGET}"
   cd "${DIR_TARGET}"
-
-  wget https://raw.githubusercontent.com/obar1/0to100/main/zero_to_one_hundred/tests/resources/repo/map.yaml
-  sed -i '' -e "s|./repo|$DIR_TARGET|g" map.yaml
+  wget https://raw.githubusercontent.com/obar1/${ZEROto100}/master/${ZEROto100}/tests/resources/map.yaml
+  sed -i '' -e "s|./books|$DIR_TARGET|g" map.yaml
 
   cat map.yaml
 
@@ -47,7 +46,7 @@ create_runme(){
 
 cat <<EOF >runme.sh
   export CONFIG_FILE="${2}/map.yaml"
-  export ZEROto100py="${2}/${ZEROto100}-latest/zero_to_one_hundred/main.py"
+  export ZEROto100py="${2}/${ZEROto100}-latest/${ZEROto100}/main.py"
   # main at run time
   python \$ZEROto100py "\$@"
 EOF

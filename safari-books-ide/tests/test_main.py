@@ -7,7 +7,7 @@ from repository.process_fs import ProcessFS as process_fs
 
 
 def skip_this():
-    return True
+    return False
 
 
 @pytest.mark.skipif(skip_this(), reason="skipped")
@@ -16,7 +16,7 @@ def test_run_main(mock_secret_yaml_env_vars,
                   get_args_help_processor, http_url, http_url_2, get_args_refresh_toc_processor
                   ):
     """logical seq"""
-    process_fs.DEBUG_Y_N = False
+    process_fs.DEBUG_Y_N = True
     run_main(get_args_create_meta_book_processor + [http_url])
     run_main(get_args_create_meta_book_processor + [http_url_2])
     run_main(get_args_refresh_toc_processor)

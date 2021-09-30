@@ -2,7 +2,6 @@
 toc md with list of meta_book as found in fs
 """
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-import os
 from typing import List
 
 from configs.config import ConfigMap
@@ -29,26 +28,10 @@ class Toc:
 1. <0596007124> ![`img`](../books/0596007124/0596007124.png) :o: [`pdf`](../books/0596007124/0596007124.pdf) :o: [`epub`](../books/0596007124/0596007124.epub) :o: [`json`](../books/0596007124/0596007124.json)
 """
         flatten_meta_book = (
-            lambda s: "1. <"
-                      + s.isbn
-                      + "> "
-                      + "![`img`](."
-                      + s.dir_img
-                      + ")"
-                      + " :o: [`pdf`](."
-                      + s.dir_pdf
-                      + ")"
-                      + " :o: [`epub`](."
-                      + s.dir_epub
-                      + ")"
-                      + " :o: [`json`](."
-                      + s.dir_json
-                      + ")"
-                      + os.linesep
-        )
+            lambda s: f"""|  `{s.isbn}` 	|  ![`img`]({s.dir_img}) 	| [`epub`]({s.dir_epub})  	|  [`pdf`]({s.dir_pdf}) 	| [`json`]({s.dir_json})  	|""")
         flattened_meta_book = list(map(flatten_meta_book, meta_books))
         return (
-            "".join(flattened_meta_book)
+            "\n".join(flattened_meta_book)
         )
 
     @classmethod
@@ -66,13 +49,16 @@ class Toc:
 
 # ./books/toc.md
 
-1. <0596007124>
+table
+
 """
         txt = []
         txt.append(
             f"""
-# {self.readme_md}
-
+# TOC 
+## `{self.persist_fs.get_now()}`
+|  ISBN 	|   	|   	|   	|   	|
+|---	|---	|---	|---	|---	|
 {self.__repr_flatten(self.meta_books)}
         """
         )

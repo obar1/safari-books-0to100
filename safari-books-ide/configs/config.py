@@ -39,7 +39,7 @@ class ConfigMap(Config):
     @property
     def get_books_path(self):
         """T Returns path."""
-        return self.load["configs"]["books_path"]
+        return self.persist_fs.abs_path(self.load["configs"]["books_path"])
 
     @property
     def get_download_engine_path(self):

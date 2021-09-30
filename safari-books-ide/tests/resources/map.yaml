@@ -1,6 +1,6 @@
 type: safari-books
 configs:
-  books_path: './resources/books'
+  books_path: './books'
   download_engine_path: '/Users/mamat/git/lorenzodifuccia/safaribooks.git/safaribooks.py'
   download_engine_books_path: '/Users/mamat/git/lorenzodifuccia/safaribooks.git/Books'
   oreilly_username: 'username'

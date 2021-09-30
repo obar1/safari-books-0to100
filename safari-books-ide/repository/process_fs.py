@@ -14,7 +14,7 @@ import subprocess
 class ProcessFS:
     """Process_fs."""
 
-    DEBUG_Y_N = True
+    DEBUG_Y_N = False
 
     @classmethod
     def debug_y_n(cls):
@@ -39,3 +39,4 @@ class ProcessFS:
         cmd = f"{cls.debug_y_n()} python {config_map.get_download_engine_path} --cred {config_map.get_oreilly_username}:{config_map.get_oreilly_userpassword} {isbn}"
         result = subprocess.run(cmd.split())
         assert result.returncode == 0
+

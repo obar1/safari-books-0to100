@@ -83,3 +83,8 @@ https://cloud.google.com/products\n
     def copy_file_to(cls, file_path, path_to):
         logging.info(f"copy_file_to {file_path} {path_to}")
         return None
+
+    @classmethod
+    def abs_path(cls, path):
+        logging.info(f"abs_path {path}")
+        return path

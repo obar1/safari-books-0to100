@@ -70,3 +70,14 @@ class PersistFS:
     def copy_file_to(cls, file_path, path_to):
         logging.info(f"copy_file_to {file_path} {path_to}")
         return copyfile(file_path, path_to)
+
+    @classmethod
+    def abs_path(cls, path):
+        logging.info(f"abs_path {path}")
+        return os.path.abspath(path)
+
+    @classmethod
+    def get_now(cls):
+        from datetime import datetime
+        now = datetime.now()
+        return now.strftime("%Y/%m/%d-%H:%M:%S")

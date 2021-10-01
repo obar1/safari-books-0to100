@@ -1,5 +1,6 @@
 """MetaBook:"""
 # pylint: disable=R0902,W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
+import json
 import re
 
 from configs.config import ConfigMap
@@ -57,12 +58,18 @@ class MetaBook:
         """
         txt = []
         txt.append(
-            f"""{{
-        "isbn": "{self.isbn}",
-        "http_url": "{self.http_url}"
-                }}"""
+            "{"
+            + ' "isbn" : "'
+            + self.isbn
+            + '" '
+            + ' ,"url" : "'
+            + self.http_url
+            + '" '
+            + "}"
         )
-        self.persist_fs.write_file(self.dir_json, txt)
+        self.persist_fs.write_file(
+            self.dir_json, json.dumps(json.loads("".join(txt)), indent=4)
+        )
 
     @staticmethod
     def is_valid_ebook_path(ebook_folder):
@@ -85,7 +92,8 @@ class MetaBook:
         self.write_img()
 
     def read_json(self):
-        return self.persist_fs.read_file(self.dir_json)
+        lines = self.persist_fs.read_file(self.dir_json)
+        return json.dumps(json.loads("".join(lines)), indent=4).replace("\n", " <br/>")
 
     @staticmethod
     def __get_isbn(http_url):
@@ -104,7 +112,6 @@ class MetaBook:
         isbn = self.isbn
         dirs = self.persist_fs.list_dirs(download_engine_books_path)
         dir_isbn = [dir_ for dir_ in dirs if "(" + isbn + ")" in dir_]
-        assert len(dir_isbn) == 1
         return (
             download_engine_books_path
             + "/"

@@ -16,7 +16,11 @@ def get_factory_provider(mock_map_yaml_env_vars):
 def test_provide__pass(get_factory_provider):
     actual: ConfigMap = get_factory_provider.provide().config_map
     assert str(actual.get_books_path).endswith("/repo")
-    assert str(actual.get_download_engine_path).endswith("./safaribooks.git/safaribooks.py")
-    assert str(actual.get_download_engine_books_path).endswith("./safaribooks.git/Books")
+    assert str(actual.get_download_engine_path).endswith(
+        "./safaribooks.git/safaribooks.py"
+    )
+    assert str(actual.get_download_engine_books_path).endswith(
+        "./safaribooks.git/Books"
+    )
     assert str(actual.get_oreilly_username).endswith("username")
     assert str(actual.get_oreilly_userpassword).endswith("userpassword")

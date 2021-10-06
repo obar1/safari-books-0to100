@@ -7,9 +7,7 @@ from unittest import mock
 
 import pytest
 
-from configs.config import ConfigMap
 from factories.factory_provider import CONFIG_FILE
-from tests.moke.persist_fs import PersistFS as persist_fs
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -42,6 +40,7 @@ def http_url_2():
 def dir_name():
     return "https:§§cloud.google.com§docs"
 
+
 @pytest.fixture
 def get_test_path():
     os_path_dirname = os.path.dirname(os.path.abspath(__file__))
@@ -61,21 +60,30 @@ def get_repo_path(get_resource_path):
 @pytest.fixture
 def get_map_yaml_path(get_resource_path):
     yield get_resource_path + "/map.yaml"
+
+
 @pytest.fixture
 def get_unsupported_map_yaml_path(get_resource_path):
     yield get_resource_path + "/unsupported_map.yaml"
+
+
 @pytest.fixture
 def get_full_path_map_yaml_path(get_resource_path):
     yield get_resource_path + "/full_path_map.yaml"
+
 
 @pytest.fixture
 def mock_map_yaml_env_vars(get_map_yaml_path):
     with mock.patch.dict(os.environ, {CONFIG_FILE: get_map_yaml_path}):
         yield
+
+
 @pytest.fixture
 def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
     with mock.patch.dict(os.environ, {CONFIG_FILE: get_unsupported_map_yaml_path}):
         yield
+
+
 @pytest.fixture
 def mock_get_full_path_map_yaml_env_vars(get_full_path_map_yaml_path):
     with mock.patch.dict(os.environ, {CONFIG_FILE: get_full_path_map_yaml_path}):
@@ -85,12 +93,18 @@ def mock_get_full_path_map_yaml_env_vars(get_full_path_map_yaml_path):
 @pytest.fixture
 def get_args_create_meta_book_processor():
     return ["runme.sh", "create_meta_book"]
+
+
 @pytest.fixture
 def get_args_refresh_toc_processor():
     return ["runme.sh", "refresh_toc"]
+
+
 @pytest.fixture
 def get_args_help_processor():
     return ["runme.sh", "help"]
+
+
 @pytest.fixture
 def get_args_unsupported_processor():
     return ["runme.sh", "something"]

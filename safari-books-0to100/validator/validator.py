@@ -15,6 +15,6 @@ class Validator:
         """is_valid_http
         basic validation
         """
-        if not txt.strip().startswith('https://'):
-            raise NotURLFormatError(f'on {txt}','')
+        if not txt.strip().startswith("https://"):
+            raise NotURLFormatError(f"on {txt}", "")
         return True

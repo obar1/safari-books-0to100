@@ -93,7 +93,11 @@ class MetaBook:
 
     def read_json(self):
         lines = self.persist_fs.read_file(self.dir_json)
-        return json.dumps(json.loads("".join(lines)), indent=4).replace('"', ' " ').replace("\n", " <br/> ")
+        return (
+            json.dumps(json.loads("".join(lines)), indent=4)
+            .replace('"', ' " ')
+            .replace("\n", " <br/> ")
+        )
 
     @staticmethod
     def __get_isbn(http_url):

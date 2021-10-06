@@ -8,7 +8,9 @@ from tests.moke.process_fs import ProcessFS as process_fs
 
 
 def test_init(get_map_yaml_path, http_url):
-    actual = MetaBook(ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, http_url)
+    actual = MetaBook(
+        ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, http_url
+    )
     assert str(actual.isbn).endswith("9780135956977")
     assert str(actual.contents_path).endswith("/repo/9780135956977")
     assert str(actual.dir_pdf).endswith("/repo/9780135956977/9780135956977.pdf")
@@ -17,14 +19,19 @@ def test_init(get_map_yaml_path, http_url):
 
 
 def test_write(get_map_yaml_path, http_url):
-    actual = MetaBook(ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, http_url)
+    actual = MetaBook(
+        ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, http_url
+    )
     logging.info(actual)
 
 
 def test_build_from_dir(get_map_yaml_path):
     assert (
         MetaBook.build_from_dir(
-            ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, "./books/9780135956977"
+            ConfigMap(get_map_yaml_path, persist_fs),
+            persist_fs,
+            process_fs,
+            "./books/9780135956977",
         ).isbn
         == "9780135956977"
     )
@@ -37,5 +44,7 @@ def test_is_valid_ebook_path():
 
 
 def test_get_epub_path(get_map_yaml_path, http_url, http_url_isbn):
-    actual = MetaBook(ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, http_url).get_epub_path()
+    actual = MetaBook(
+        ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, http_url
+    ).get_epub_path()
     assert str(actual).endswith(http_url_isbn + MetaBook.epub_suffix)

@@ -15,8 +15,7 @@ class HelpProcessor:
         self.supported_processor = supported_processor
         self.persist_fs = persist_fs
 
-
-    def get_version(self ,change_log_relative_path):
+    def get_version(self, change_log_relative_path):
         """read file and return the version"""
         txt = self.persist_fs.read_file(change_log_relative_path)
         version = max(sorted(filter(lambda f: VERSION in f, txt)))

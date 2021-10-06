@@ -8,7 +8,8 @@ from tests.moke.process_fs import ProcessFS as process_fs
 CURR_VERSION = "0.2.7"
 
 
-def test_process(get_map_yaml_path,
+def test_process(
+    get_map_yaml_path,
     get_args_help_processor,
 ):
     actual: HelpProcessor = SBFactory(

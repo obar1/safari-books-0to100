@@ -68,3 +68,13 @@ class PersistFS:
     @staticmethod
     def abs_path_join(path, relative_path):
         return os.path.join(path, relative_path)
+
+    @staticmethod
+    def render_json(txt: str):
+        """render_json"""
+        return txt.replace('"', ' " ').replace("\n", " <br/> ")
+
+    @staticmethod
+    def render_path(txt: str):
+        """render_json"""
+        return txt.replace(" ", "%20")

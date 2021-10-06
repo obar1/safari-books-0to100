@@ -4,6 +4,7 @@ import pytest
 
 from configs.config import ConfigMap
 from factories.sb_factory import SBFactory
+from processors.unsupported_processor import UnsupportedProcessor
 from tests.moke.persist_fs import PersistFS as persist_fs
 from tests.moke.process_fs import ProcessFS as process_fs
 
@@ -14,4 +15,6 @@ def get_config_map(get_map_yaml_path):
 
 
 def test_get_processor(get_config_map):
-    SBFactory(get_config_map, persist_fs, process_fs)
+        actual = SBFactory(get_config_map, persist_fs, process_fs).get_processor([])
+        for p in actual:
+            assert UnsupportedProcessor == type(p)

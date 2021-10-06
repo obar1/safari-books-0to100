@@ -15,16 +15,13 @@ class HelpProcessor:
         self.supported_processor = supported_processor
         self.persist_fs = persist_fs
 
-    @staticmethod
-    def get_version(change_log_relative_path):
+
+    def get_version(self ,change_log_relative_path):
         """read file and return the version"""
-        with open(
-            change_log_relative_path, mode="r", encoding="UTF-8"
-        ) as file_change_log:
-            txt = file_change_log.readlines()
-            version = max(sorted(filter(lambda f: VERSION in f, txt)))
-            logging.debug(f"v. {version}")
-            return version.strip()
+        txt = self.persist_fs.read_file(change_log_relative_path)
+        version = max(sorted(filter(lambda f: VERSION in f, txt)))
+        logging.debug(f"v. {version}")
+        return version.strip()
 
     def process(self):
         """Get version."""

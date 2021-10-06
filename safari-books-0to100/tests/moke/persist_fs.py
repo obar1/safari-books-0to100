@@ -41,21 +41,6 @@ class PersistFS(_PersistFS):
         logging.debug(f"make_dirs {path}")
 
     @staticmethod
-    def read_file(filename) -> List[str]:
-        logging.debug(f"read {filename}")
-        if filename.endswith("readme.md"):
-            return """
-        # https:§§cloud.google.com§docs\n
-                \n
-        > https://cloud.google.com/docs\n
-
-https://cloud.google.com/products\n
-                """.split(
-                "\n"
-            )
-        raise ValueError(f"{filename} not supported")
-
-    @staticmethod
     def delete_folder(path):
         logging.debug(f"delete_folder {path}")
 

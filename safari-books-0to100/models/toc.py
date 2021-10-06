@@ -25,13 +25,12 @@ class Toc:
         """repr"""
         return f"Toc {self.readme_md}, {self.meta_books}"
 
-    @staticmethod
-    def __repr_flatten(meta_books: List[MetaBook]) -> str:
+    def __repr_flatten(self, meta_books: List[MetaBook]) -> str:
         """transform as
         1. <0596007124> ![`img`](../books/0596007124/0596007124.png) :o: [`pdf`](../books/0596007124/0596007124.pdf) :o: [`epub`](../books/0596007124/0596007124.epub) :o: [`json`](../books/0596007124/0596007124.json)
         """
         flatten_meta_book = (
-            lambda s: f"""| <span style="color:blue">**{s.isbn}**</span>	|  ![`img`]({s.dir_img}) 	| [`epub`]({s.dir_epub})  	|  [`pdf`]({s.dir_pdf}) 	| {s.read_json()}	|"""
+            lambda s: f"""| <span style="color:blue">**{s.isbn}**</span>	|  ![`img`]({self.persist_fs.render_path(s.dir_img)}) 	| [`epub`]({self.persist_fs.render_path(s.dir_epub)})  	|  [`pdf`]({self.persist_fs.render_path(s.dir_pdf)}) 	| {self.persist_fs.render_json(s.read_json())}	|"""
         )
         flattened_meta_book = list(map(flatten_meta_book, meta_books))
         return "\n".join(flattened_meta_book)

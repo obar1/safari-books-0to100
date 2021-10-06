@@ -20,13 +20,12 @@ class ProcessFS:
 
     @classmethod
     def debug_y_n(cls):
-
         return cls.DEBUG_ME if cls.DEBUG_Y_N else cls.DEBUG_ME_NOT
 
     @classmethod
     def write_img(cls, dir_img, http_url_img):
         logging.info(f"write_img  {dir_img} {http_url_img}")
-        cmd = f"{cls.debug_y_n()} curl -o  {dir_img}  {http_url_img}"
+        cmd = f'{cls.debug_y_n()} curl -o  "{dir_img}"  {http_url_img}'
         subprocess.call(shlex.split(cmd))
 
     @classmethod

@@ -30,16 +30,11 @@ class Config:
 class ConfigMap(Config):
     """ConfigMap specific to  actual impl"""
 
-    def __init__(self, map_yaml_path, persist_fs):
-        """init"""
-        super().__init__(map_yaml_path, persist_fs)
-        self.get_repo_readme_puml = "readme.puml"
-        # TODO: put in the yaml
-
     @property
     def get_books_path(self):
         """T Returns path."""
-        return self.persist_fs.abs_path(self.load["configs"]["books_path"])
+        tmp = self.load["configs"]["books_path"]
+        return self.persist_fs.abs_path(tmp)
 
     @property
     def get_download_engine_path(self):

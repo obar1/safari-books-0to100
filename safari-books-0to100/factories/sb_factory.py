@@ -29,16 +29,22 @@ class SBFactory:
     def get_processor(self, args):
         """get the processor"""
         logging.info(f"args {args}")
-        cmd = args[1]
-        if cmd == "create_meta_book":
-            yield self.create_meta_book_processor(args[2])
-            yield self.refresh_toc_processor()
-        elif cmd == "refresh_toc":
-            yield self.refresh_toc_processor()
-        elif cmd == "help":
-            yield self.help_processor()
+        if len(args) < 1:
+            yield self.unsupported_processor(args)
         else:
-            yield self.unsupported_processor(cmd)
+            cmd = args[1]
+            if cmd == "create_meta_book":
+                if len(args) < 2:
+                    yield self.unsupported_processor(args)
+                else:
+                    yield self.create_meta_book_processor(args[2])
+                    yield self.refresh_toc_processor()
+            elif cmd == "refresh_toc":
+                yield self.refresh_toc_processor()
+            elif cmd == "help":
+                yield self.help_processor()
+            else:
+                yield self.unsupported_processor(cmd)
 
     def create_meta_book_processor(self, http_url):
         """create_meta_book_processor"""

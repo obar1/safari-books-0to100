@@ -24,5 +24,5 @@ class RefreshTocProcessor:
         meta_books = Toc.build_from_dirs(
             self.config_map, self.persist_fs, self.process_fs, valid_dirs
         )
-        toc: Toc = Toc(self.config_map, self.persist_fs, meta_books)
+        toc: Toc = Toc(self.config_map, self.persist_fs, self.process_fs, meta_books)
         toc.write()

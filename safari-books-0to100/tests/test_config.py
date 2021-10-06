@@ -9,14 +9,18 @@ from tests.moke.process_fs import ProcessFS as process_fs
 
 
 @pytest.fixture
-def get_factory_provider(mock_settings_env_vars):
+def get_factory_provider(mock_map_yaml_env_vars):
     return FactoryProvider(persist_fs, process_fs)
 
 
 def test_provide__pass(get_factory_provider):
     actual: ConfigMap = get_factory_provider.provide().config_map
-    assert actual.get_books_path == "./books"
-    assert actual.get_download_engine_path == "./safaribooks.git/safaribooks.py"
-    assert actual.get_download_engine_books_path == "./safaribooks.git/Books"
-    assert actual.get_oreilly_username == "username"
-    assert actual.get_oreilly_userpassword == "userpassword"
+    assert str(actual.get_books_path).endswith("/repo")
+    assert str(actual.get_download_engine_path).endswith(
+        "./safaribooks.git/safaribooks.py"
+    )
+    assert str(actual.get_download_engine_books_path).endswith(
+        "./safaribooks.git/Books"
+    )
+    assert str(actual.get_oreilly_username).endswith("username")
+    assert str(actual.get_oreilly_userpassword).endswith("userpassword")

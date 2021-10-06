@@ -13,13 +13,10 @@ from repository.persist_fs import PersistFS as _PersistFS
 class PersistFS(_PersistFS):
     """persist_fs."""
 
-    relative_path_starts_with = "./"
-    HTTPS_ = ":§§"
-
-    @classmethod
-    def list_dirs(cls, path) -> List[str]:
-        logging.info(f"list_dirs {path}")
-        if path == "./books":
+    @staticmethod
+    def list_dirs(path: str) -> List[str]:
+        logging.debug(f"list_dirs {path}")
+        if path.endswith("repo"):
             return ["ABC (9781948580793)", "CDF (9780135956977)"]
         if path == "./safaribooks.git/Books":
             return [
@@ -28,65 +25,27 @@ class PersistFS(_PersistFS):
             ]
         raise ValueError(f"{path} not supported")
 
-    @classmethod
-    def get_dir_name(cls, filename):
+    @staticmethod
+    def get_dir_name(filename):
         logging.info(f"get_dir_name {filename}")
 
-    @classmethod
-    def load_file(cls, config_file):
-        logging.info(f"load_file {config_file}")
-        if config_file.endswith("unsupported_map.yaml"):
-            return {"type": "not_a_map", "lib": {"path": "./repo"}}
-        if config_file.endswith("map.yaml"):
-            return {
-                "type": "safari-books",
-                "configs": {
-                    "books_path": "./books",
-                    "download_engine_path": "./safaribooks.git/safaribooks.py",
-                    "download_engine_books_path": "./safaribooks.git/Books",
-                    "oreilly_username": "username",
-                    "oreilly_userpassword": "userpassword",
-                },
-            }
-        raise ValueError(f"{config_file} not supported")
-
-    @classmethod
-    def write_file(cls, filename, txt):
-        logging.info(f"write_file {filename} {txt}")
+    @staticmethod
+    def write_file(filename, txt):
+        logging.debug(f"write_file {filename} {txt}")
 
     @classmethod
     def create_file(cls, filename):
-        logging.info(f"create_file {filename}")
+        logging.debug(f"create_file {filename}")
         return cls.write_file(filename, [])
 
-    @classmethod
-    def make_dirs(cls, path):
-        logging.info(f"make_dirs {path}")
+    @staticmethod
+    def make_dirs(path):
+        logging.debug(f"make_dirs {path}")
 
-    @classmethod
-    def read_file(cls, filename) -> List[str]:
-        logging.info(f"read {filename}")
-        if filename.endswith("readme.md"):
-            return """
-        # https:§§cloud.google.com§docs\n
-                \n
-        > https://cloud.google.com/docs\n
+    @staticmethod
+    def delete_folder(path):
+        logging.debug(f"delete_folder {path}")
 
-https://cloud.google.com/products\n
-                """.split(
-                "\n"
-            )
-        raise ValueError(f"{filename} not supported")
-
-    @classmethod
-    def delete_folder(cls, path):
-        logging.info(f"delete_folder {path}")
-
-    @classmethod
-    def copy_file_to(cls, file_path, path_to):
-        logging.info(f"copy_file_to {file_path} {path_to}")
-
-    @classmethod
-    def abs_path(cls, path):
-        logging.info(f"abs_path {path}")
-        return path
+    @staticmethod
+    def copy_file_to(file_path, path_to):
+        logging.debug(f"copy_file_to {file_path} {path_to}")

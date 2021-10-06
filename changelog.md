@@ -14,3 +14,6 @@ __version__ = "0.2.2"
 
 __version__ = "0.2.5"
 - https://github.com/obar1/safari-books-0to100/issues/9
+
+__version__ = "0.2.7"
+https://github.com/obar1/safari-books-0to100/issues/12

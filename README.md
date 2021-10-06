@@ -21,12 +21,10 @@ wget -q https://raw.githubusercontent.com/obar1/safari-books-0to100/master/setup
 and use it like so
 
 ```bash
-# TODO: set vars
-set -u
-tag=
-target_dir=
-
 bash setup.sh $tag $target_dir
+#ex
+# bash setup.sh 0.1 ./repo
+# bash setup.sh 1.2 /somepath/there
 ```
 check contents of  `yaml` file for the download engine and oreilly usr/pwd
 

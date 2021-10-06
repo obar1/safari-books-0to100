@@ -20,7 +20,7 @@ def test_run_main(
     get_args_refresh_toc_processor,
 ):
     """logical seq"""
-    process_fs.DEBUG_Y_N = False
+    process_fs.DEBUG_Y_N = True
     run_main(get_args_create_meta_book_processor + [http_url])
     run_main(get_args_create_meta_book_processor + [http_url_2])
     run_main(get_args_refresh_toc_processor)

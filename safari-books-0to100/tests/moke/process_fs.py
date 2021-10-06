@@ -18,3 +18,7 @@ class ProcessFS(_ProcessFS):
     @classmethod
     def write_epub(cls, config_map, dir_epub, isbn):
         logging.info(f"write_epub  {dir_epub} {isbn}")
+
+    @staticmethod
+    def get_now():
+        return "2021/01/01-00:00:00"

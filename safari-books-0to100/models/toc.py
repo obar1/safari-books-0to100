@@ -11,11 +11,14 @@ from models.meta_book import MetaBook
 class Toc:
     """Toc is a list of meta_books"""
 
-    def __init__(self, config_map: ConfigMap, persist_fs, meta_books: List[MetaBook]):
+    def __init__(
+        self, config_map: ConfigMap, persist_fs, process_fs, meta_books: List[MetaBook]
+    ):
         """init"""
         self.config_map = config_map
         self.readme_md = config_map.get_books_path + "/toc.md"
         self.persist_fs = persist_fs
+        self.process_fs = process_fs
         self.meta_books = meta_books
 
     def __repr__(self):
@@ -58,7 +61,7 @@ class Toc:
             f"""
 # TOC
 ## `{len(self.meta_books)}` books
-### {self.persist_fs.get_now()}
+### {self.process_fs.get_now()}
 |  ISBN 	|   	|   	|   	|  `json-contents` 	|
 |---	|---	|---	|---	|---	|
 {self.__repr_flatten(self.meta_books)}

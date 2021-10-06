@@ -35,7 +35,7 @@ def http_url_isbn():
 
 @pytest.fixture
 def http_url_2():
-    yield "https://learning.oreilly.com/library/view/head-first-design/0596007124/"
+    yield "https://www.oreilly.com/library/view/data-pipelines-pocket/9781492087823/"
 
 
 @pytest.fixture
@@ -105,11 +105,6 @@ def get_args_create_meta_book_processor():
 @pytest.fixture
 def get_args_refresh_toc_processor():
     return ["runme.sh", "refresh_toc"]
-
-
-@pytest.fixture
-def get_args_refresh_puml_processor():
-    return ["runme.sh", "refresh_puml"]
 
 
 @pytest.fixture

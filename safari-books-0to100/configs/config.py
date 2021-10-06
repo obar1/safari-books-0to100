@@ -34,11 +34,7 @@ class ConfigMap(Config):
     def get_books_path(self):
         """T Returns path."""
         tmp = self.load["configs"]["books_path"]
-        return (
-            tmp
-            if self.persist_fs.is_relative_path(tmp)
-            else self.persist_fs.abs_path(tmp)
-        )
+        return self.persist_fs.abs_path(tmp)
 
     @property
     def get_download_engine_path(self):

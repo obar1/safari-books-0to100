@@ -12,7 +12,24 @@ def skip_this():
 
 @pytest.mark.skipif(skip_this(), reason="skipped")
 def test_run_main(
-    mock_settings_env_vars,
+        mock_map_yaml_env_vars,
+    get_args_create_meta_book_processor,
+    get_args_help_processor,
+    http_url,
+    http_url_2,
+    get_args_refresh_toc_processor,
+):
+    """logical seq"""
+    process_fs.DEBUG_Y_N = False
+    run_main(get_args_create_meta_book_processor + [http_url])
+    run_main(get_args_create_meta_book_processor + [http_url_2])
+    run_main(get_args_refresh_toc_processor)
+    run_main(get_args_help_processor)
+
+
+@pytest.mark.skipif(skip_this(), reason="skipped")
+def test_run_main(
+    mock_get_full_path_map_yaml_env_vars,
     get_args_create_meta_book_processor,
     get_args_help_processor,
     http_url,
@@ -25,3 +42,4 @@ def test_run_main(
     run_main(get_args_create_meta_book_processor + [http_url_2])
     run_main(get_args_refresh_toc_processor)
     run_main(get_args_help_processor)
+

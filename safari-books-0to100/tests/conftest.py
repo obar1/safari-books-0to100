@@ -39,6 +39,10 @@ def http_url_2():
 
 
 @pytest.fixture
+def dir_name():
+    return "https:§§cloud.google.com§docs"
+
+@pytest.fixture
 def get_test_path():
     os_path_dirname = os.path.dirname(os.path.abspath(__file__))
     yield os_path_dirname
@@ -57,51 +61,36 @@ def get_repo_path(get_resource_path):
 @pytest.fixture
 def get_map_yaml_path(get_resource_path):
     yield get_resource_path + "/map.yaml"
-
-
 @pytest.fixture
 def get_unsupported_map_yaml_path(get_resource_path):
     yield get_resource_path + "/unsupported_map.yaml"
-
-
+@pytest.fixture
+def get_full_path_map_yaml_path(get_resource_path):
+    yield get_resource_path + "/full_path_map.yaml"
 
 @pytest.fixture
-def mock_settings_env_vars(get_map_yaml_path):
+def mock_map_yaml_env_vars(get_map_yaml_path):
     with mock.patch.dict(os.environ, {CONFIG_FILE: get_map_yaml_path}):
         yield
-
-
 @pytest.fixture
 def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
     with mock.patch.dict(os.environ, {CONFIG_FILE: get_unsupported_map_yaml_path}):
         yield
-
-
 @pytest.fixture
-def get_config_map(get_map_yaml_path):
-    return ConfigMap(get_map_yaml_path, persist_fs)
-
-
-@pytest.fixture
-def dir_name():
-    return "https:§§cloud.google.com§docs"
+def mock_get_full_path_map_yaml_env_vars(get_full_path_map_yaml_path):
+    with mock.patch.dict(os.environ, {CONFIG_FILE: get_full_path_map_yaml_path}):
+        yield
 
 
 @pytest.fixture
 def get_args_create_meta_book_processor():
     return ["runme.sh", "create_meta_book"]
-
-
 @pytest.fixture
 def get_args_refresh_toc_processor():
     return ["runme.sh", "refresh_toc"]
-
-
 @pytest.fixture
 def get_args_help_processor():
     return ["runme.sh", "help"]
-
-
 @pytest.fixture
 def get_args_unsupported_processor():
     return ["runme.sh", "something"]

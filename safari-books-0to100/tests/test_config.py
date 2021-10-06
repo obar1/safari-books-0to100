@@ -9,7 +9,7 @@ from tests.moke.process_fs import ProcessFS as process_fs
 
 
 @pytest.fixture
-def get_factory_provider(mock_settings_env_vars):
+def get_factory_provider(mock_map_yaml_env_vars):
     return FactoryProvider(persist_fs, process_fs)
 
 

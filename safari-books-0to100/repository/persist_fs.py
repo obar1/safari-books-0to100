@@ -57,7 +57,7 @@ class PersistFS:
 
     @staticmethod
     def abs_path(path):
-        return os.path.dirname(os.path.abspath(path))
+        return os.path.abspath(path)
 
     @staticmethod
     def is_relative_path(path):

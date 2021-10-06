@@ -14,9 +14,9 @@ class PersistFS(_PersistFS):
     """persist_fs."""
 
     @staticmethod
-    def list_dirs(path) -> List[str]:
+    def list_dirs(path:str) -> List[str]:
         logging.debug(f"list_dirs {path}")
-        if path == "./repo":
+        if path.endswith("repo"):
             return ["ABC (9781948580793)", "CDF (9780135956977)"]
         if path == "./safaribooks.git/Books":
             return [
@@ -25,6 +25,9 @@ class PersistFS(_PersistFS):
             ]
         raise ValueError(f"{path} not supported")
 
+    @staticmethod
+    def get_dir_name(cls, filename):
+        logging.info(f"get_dir_name {filename}")
 
 
     @staticmethod

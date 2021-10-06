@@ -1,29 +1,30 @@
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
 import logging
 
+from configs.config import ConfigMap
 from models.meta_book import MetaBook
 from tests.moke.persist_fs import PersistFS as persist_fs
 from tests.moke.process_fs import ProcessFS as process_fs
 
 
-def test_init(get_config_map, http_url):
-    actual = MetaBook(get_config_map, persist_fs, process_fs, http_url)
-    assert actual.isbn == "9780135956977"
-    assert actual.contents_path == "./repo/9780135956977"
-    assert actual.dir_pdf == "./repo/9780135956977/9780135956977.pdf"
-    assert actual.dir_epub == "./repo/9780135956977/9780135956977.epub"
-    assert actual.dir_img == "./repo/9780135956977/9780135956977.png"
+def test_init(get_map_yaml_path, http_url):
+    actual = MetaBook(ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, http_url)
+    assert str(actual.isbn).endswith("9780135956977")
+    assert str(actual.contents_path).endswith("/repo/9780135956977")
+    assert str(actual.dir_pdf).endswith("/repo/9780135956977/9780135956977.pdf")
+    assert str(actual.dir_epub).endswith("/repo/9780135956977/9780135956977.epub")
+    assert str(actual.dir_img).endswith("/repo/9780135956977/9780135956977.png")
 
 
-def test_write(get_config_map, http_url):
-    actual = MetaBook(get_config_map, persist_fs, process_fs, http_url)
+def test_write(get_map_yaml_path, http_url):
+    actual = MetaBook(ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, http_url)
     logging.info(actual)
 
 
-def test_build_from_dir(get_config_map):
+def test_build_from_dir(get_map_yaml_path):
     assert (
         MetaBook.build_from_dir(
-            get_config_map, persist_fs, process_fs, "./books/9780135956977"
+            ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, "./books/9780135956977"
         ).isbn
         == "9780135956977"
     )
@@ -35,6 +36,6 @@ def test_is_valid_ebook_path():
     assert actual == ["0123456789"]
 
 
-def test_get_epub_path(get_config_map, http_url, http_url_isbn):
-    actual = MetaBook(get_config_map, persist_fs, process_fs, http_url).get_epub_path()
+def test_get_epub_path(get_map_yaml_path, http_url, http_url_isbn):
+    actual = MetaBook(ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, http_url).get_epub_path()
     assert str(actual).endswith(http_url_isbn + MetaBook.epub_suffix)

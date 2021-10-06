@@ -2,7 +2,7 @@
 from configs.config import ConfigMap
 from factories.sb_factory import SBFactory
 from processors.create_meta_book_processor import CreateMetaBookProcessor
-from repository.persist_fs import PersistFS as persist_fs
+from tests.moke.persist_fs import PersistFS as persist_fs
 from tests.moke.process_fs import ProcessFS as process_fs
 
 def test_process(get_map_yaml_path, get_args_create_meta_book_processor, http_url):

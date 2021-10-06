@@ -9,10 +9,10 @@ from tests.moke.process_fs import ProcessFS as process_fs
 def test_init(get_config_map, http_url):
     actual = MetaBook(get_config_map, persist_fs, process_fs, http_url)
     assert actual.isbn == "9780135956977"
-    assert actual.contents_path == "./9780135956977"
-    assert actual.dir_pdf == "./9780135956977/9780135956977.pdf"
-    assert actual.dir_epub == "./9780135956977/9780135956977.epub"
-    assert actual.dir_img == "./9780135956977/9780135956977.png"
+    assert actual.contents_path == "./repo/9780135956977"
+    assert actual.dir_pdf == "./repo/9780135956977/9780135956977.pdf"
+    assert actual.dir_epub == "./repo/9780135956977/9780135956977.epub"
+    assert actual.dir_img == "./repo/9780135956977/9780135956977.png"
 
 
 def test_write(get_config_map, http_url):

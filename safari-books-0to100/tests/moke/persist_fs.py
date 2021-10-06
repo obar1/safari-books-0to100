@@ -16,7 +16,7 @@ class PersistFS(_PersistFS):
     @staticmethod
     def list_dirs(path) -> List[str]:
         logging.debug(f"list_dirs {path}")
-        if path == "./books":
+        if path == "./repo":
             return ["ABC (9781948580793)", "CDF (9780135956977)"]
         if path == "./safaribooks.git/Books":
             return [

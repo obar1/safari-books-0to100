@@ -1,7 +1,7 @@
 type: safari-books
 configs:
   books_path: './repo'
-  download_engine_path: '/Users/some_path/safaribooks.git/safaribooks.py'
-  download_engine_books_path: '/Users/some_path/safaribooks.git/Books'
+  download_engine_path: './safaribooks.git/safaribooks.py'
+  download_engine_books_path: './safaribooks.git/Books'
   oreilly_username: 'username'
   oreilly_userpassword: 'userpassword'

@@ -15,7 +15,7 @@ def get_factory_provider(mock_settings_env_vars):
 
 def test_provide__pass(get_factory_provider):
     actual: ConfigMap = get_factory_provider.provide().config_map
-    assert actual.get_books_path == "./books"
+    assert actual.get_books_path == "./repo"
     assert actual.get_download_engine_path == "./safaribooks.git/safaribooks.py"
     assert actual.get_download_engine_books_path == "./safaribooks.git/Books"
     assert actual.get_oreilly_username == "username"

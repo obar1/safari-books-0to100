@@ -23,8 +23,7 @@ and use it like so
 ```bash
 bash setup.sh $tag $target_dir
 #ex
-# bash setup.sh 0.1 ./repo
-# bash setup.sh 1.2 /somepath/there
+# bash setup.sh 0.3 ./lib
 ```
 check contents of  `yaml` file for the download engine and oreilly usr/pwd
 

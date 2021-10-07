@@ -15,17 +15,17 @@ h1(){
 help(){
   h1 "help"
   cat << EOF
-  bash ${0} tag dir_repo
+  bash ${0} tag
   ex
-  bash ${0} 0.1 ./repo
+  bash ${0} 0.1
 EOF
 }
 
 get_code(){
-  h1 "params $1 in $2"
+  h1 "params $1"
   ZEROto100=safari-books-0to100
   TAG="${1}"
-  DIR_TARGET="${2}"
+  DIR_TARGET="."
 
   mkdir -p "${DIR_TARGET}"  || true
   cd "${DIR_TARGET}"

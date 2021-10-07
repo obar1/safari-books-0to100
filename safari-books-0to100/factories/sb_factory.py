@@ -29,7 +29,7 @@ class SBFactory:
     def get_processor(self, args):
         """get the processor"""
         logging.info(f"args {args}")
-        if len(args) < 1:
+        if len(args) < 2:
             yield self.unsupported_processor(args)
         else:
             cmd = args[1]

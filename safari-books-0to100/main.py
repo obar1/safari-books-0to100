@@ -23,6 +23,8 @@ def run_main(argv: List[str]):
         logging.critical(f"check the help / params {sys.argv} ")
     except ModuleNotFoundError:
         logging.critical("??? have you installed all the dep")
+    except Exception as e:
+        logging.critical(f"check the help / params {sys.argv}  ... {e}")
 
 
 if __name__ == "__main__":

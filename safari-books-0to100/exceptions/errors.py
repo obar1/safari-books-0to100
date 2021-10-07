@@ -12,16 +12,6 @@ class NotURLFormatError(Exception):
         super().__init__(message)
 
 
-class NotRelativeBooksPath(Exception):
-    """NotRelativeBooksPath
-    to enforce path like './somepath'
-    """
-
-    def __init__(self, message):
-        # Call the base class constructor with the parameters it needs
-        super().__init__(message)
-
-
 class UnsupportedConfigMap(Exception):
     """UnsupportedConfigMap"""
 

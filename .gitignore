@@ -9,4 +9,4 @@ __pycache__/
 # local run
 runme.sh
 map.yaml
-repo/
+repo*/

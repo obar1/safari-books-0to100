@@ -48,11 +48,6 @@ def get_resource_path(get_test_path):
 
 
 @pytest.fixture
-def get_repo_path(get_resource_path):
-    yield get_resource_path + "/books"
-
-
-@pytest.fixture
 def get_map_yaml_path(get_resource_path):
     yield get_resource_path + "/map.yaml"
 
@@ -63,13 +58,19 @@ def get_unsupported_map_yaml_path(get_resource_path):
 
 
 @pytest.fixture
-def get_full_path_map_yaml_path(get_resource_path):
-    yield get_resource_path + "/full_path_map.yaml"
+def get_secret_map_yaml_path(get_resource_path):
+    yield get_resource_path + "/secret_map.yaml"
 
 
 @pytest.fixture
 def mock_map_yaml_env_vars(get_map_yaml_path):
     with mock.patch.dict(os.environ, {CONFIG_FILE: get_map_yaml_path}):
+        yield
+
+
+@pytest.fixture
+def mock_secret_map_yaml_env_vars(get_secret_map_yaml_path):
+    with mock.patch.dict(os.environ, {CONFIG_FILE: get_secret_map_yaml_path}):
         yield
 
 

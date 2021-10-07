@@ -2,8 +2,7 @@
 
 
 # pylint: disable=W0621,C0116,R0903,E0401,W0703,W1201,missing-function-docstring,E0401,C0114,W0511,W1203,C0200,C0103,W1203
-from exceptions.errors import NotRelativeBooksPath, UnsupportedConfigMap
-from repository.persist_fs import PREFIX_RELATIVE_FOLDER
+from exceptions.errors import UnsupportedConfigMap
 
 SAFARI_BOOKS = "safari-books"
 CONFIG_FILE = "CONFIG_FILE"
@@ -38,12 +37,11 @@ class ConfigMap(Config):
     def __init__(self, map_yaml_path, persist_fs):
         super().__init__(map_yaml_path, persist_fs)
         self.is_valid_type(self.get_type, SAFARI_BOOKS)
-        self.is_valid_books_path(self.get_books_path)
 
     @property
     def get_books_path(self):
         """T Returns path."""
-        return str(self._load["configs"]["books_path"]).rstrip(PREFIX_RELATIVE_FOLDER)
+        return "."
 
     @property
     def get_download_engine_path(self):
@@ -64,13 +62,6 @@ class ConfigMap(Config):
     def get_oreilly_userpassword(self):
         """T Returns path."""
         return self._load["configs"]["oreilly_userpassword"]
-
-    def is_valid_books_path(self, books_path):
-        if self.persist_fs.is_relative_path(books_path):
-            return books_path
-        raise NotRelativeBooksPath(
-            f"the books_path {books_path} should start with {PREFIX_RELATIVE_FOLDER}"
-        )
 
     @staticmethod
     def is_valid_type(type_, safari_books_type):

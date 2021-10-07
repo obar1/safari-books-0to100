@@ -10,12 +10,12 @@ def skip_this():
     return True
 
 
-process_fs.DEBUG_Y_N = False
+process_fs.DEBUG_Y_N = True
 
 
 @pytest.mark.skipif(skip_this(), reason="skipped")
 def test_run_main(
-    mock_map_yaml_env_vars,
+    mock_secret_map_yaml_env_vars,
     get_args_create_meta_book_processor,
     get_args_help_processor,
     http_url,

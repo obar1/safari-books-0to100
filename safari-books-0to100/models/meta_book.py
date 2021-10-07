@@ -20,7 +20,7 @@ class MetaBook:
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.isbn = self.__get_isbn(http_url)
-        self.contents_path = config_map.get_books_path + f"/{self.isbn}"
+        self.contents_path = f"{self.isbn}"
         self.dir_json = f"{self.contents_path}/{self.isbn}.json"
         self.dir_epub = f"{self.contents_path}/{self.isbn}.epub"
         self.dir_pdf = f"{self.contents_path}/{self.isbn}.pdf"
@@ -112,6 +112,7 @@ class MetaBook:
         isbn = self.isbn
         dirs = self.persist_fs.list_dirs(download_engine_books_path)
         dir_isbn = [dir_ for dir_ in dirs if "(" + isbn + ")" in dir_]
+        assert len(dir_isbn) == 1
         return (
             download_engine_books_path
             + "/"

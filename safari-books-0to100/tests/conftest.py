@@ -7,18 +7,13 @@ from unittest import mock
 
 import pytest
 
-from factories.factory_provider import CONFIG_FILE
+from configs.config import CONFIG_FILE
 
 
 @pytest.fixture(scope="session", autouse=True)
 def callattr_ahead_of_alltests():
     logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
     yield
-
-
-@pytest.fixture
-def wip():
-    logging.info("~" * 88)
 
 
 @pytest.fixture
@@ -75,18 +70,6 @@ def get_full_path_map_yaml_path(get_resource_path):
 @pytest.fixture
 def mock_map_yaml_env_vars(get_map_yaml_path):
     with mock.patch.dict(os.environ, {CONFIG_FILE: get_map_yaml_path}):
-        yield
-
-
-@pytest.fixture
-def mock_unsupported_map_yaml_env_vars(get_unsupported_map_yaml_path):
-    with mock.patch.dict(os.environ, {CONFIG_FILE: get_unsupported_map_yaml_path}):
-        yield
-
-
-@pytest.fixture
-def mock_get_full_path_map_yaml_env_vars(get_full_path_map_yaml_path):
-    with mock.patch.dict(os.environ, {CONFIG_FILE: get_full_path_map_yaml_path}):
         yield
 
 

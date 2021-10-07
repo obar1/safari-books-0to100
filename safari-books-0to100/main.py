@@ -7,6 +7,7 @@ import logging
 import sys
 from typing import List
 
+from exceptions.errors import UnsupportedOptionError
 from factories.factory_provider import FactoryProvider
 from factories.sb_factory import SBFactory
 from repository.persist_fs import PersistFS as persist_fs
@@ -18,8 +19,8 @@ def run_main(argv: List[str]):
         factory: SBFactory = FactoryProvider(persist_fs, process_fs).provide()
         for p in factory.get_processor(argv):
             p.process()
-    except IndexError:
-        logging.critical(f"check the params {sys.argv}")
+    except UnsupportedOptionError:
+        logging.critical(f"check the help / params {sys.argv} ")
     except ModuleNotFoundError:
         logging.critical("??? have you installed all the dep")
 

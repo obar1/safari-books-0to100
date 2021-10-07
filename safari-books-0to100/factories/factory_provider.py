@@ -5,12 +5,9 @@ provides the actual factory based on the type value
 
 import os
 
-from configs.config import Config, ConfigMap
+from configs.config import Config, ConfigMap, SAFARI_BOOKS, CONFIG_FILE
+from exceptions.errors import UnsupportedConfigMap
 from factories.sb_factory import SBFactory
-
-SAFARI_BOOKS = "safari-books"
-
-CONFIG_FILE = "CONFIG_FILE"
 
 
 class FactoryProvider:
@@ -30,4 +27,4 @@ class FactoryProvider:
         if get_type == SAFARI_BOOKS:
             config_map = ConfigMap(self.config_file, self.persist_fs)
             return SBFactory(config_map, self.persist_fs, self.process_fs)
-        raise NotImplementedError(f"NotImplementedError {get_type}")
+        raise UnsupportedConfigMap(get_type)

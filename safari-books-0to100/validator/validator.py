@@ -16,5 +16,5 @@ class Validator:
         basic validation
         """
         if not txt.strip().startswith("https://"):
-            raise NotURLFormatError(f"on {txt}", "")
+            raise NotURLFormatError(f"on {txt}")
         return True

@@ -12,10 +12,10 @@ def test_init(get_map_yaml_path, http_url):
         ConfigMap(get_map_yaml_path, persist_fs), persist_fs, process_fs, http_url
     )
     assert str(actual.isbn).endswith("9780135956977")
-    assert str(actual.contents_path).endswith("/repo/9780135956977")
-    assert str(actual.dir_pdf).endswith("/repo/9780135956977/9780135956977.pdf")
-    assert str(actual.dir_epub).endswith("/repo/9780135956977/9780135956977.epub")
-    assert str(actual.dir_img).endswith("/repo/9780135956977/9780135956977.png")
+    assert str(actual.contents_path).endswith("9780135956977")
+    assert str(actual.dir_pdf).endswith("9780135956977/9780135956977.pdf")
+    assert str(actual.dir_epub).endswith("9780135956977/9780135956977.epub")
+    assert str(actual.dir_img).endswith("9780135956977/9780135956977.png")
 
 
 def test_write(get_map_yaml_path, http_url):

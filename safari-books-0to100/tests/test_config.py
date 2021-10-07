@@ -2,25 +2,29 @@
 
 import pytest
 
-from configs.config import ConfigMap
-from factories.factory_provider import FactoryProvider
+from configs.config import ConfigMap, Config, SAFARI_BOOKS
+from exceptions.errors import NotRelativeBooksPath, UnsupportedConfigMap
 from tests.moke.persist_fs import PersistFS as persist_fs
-from tests.moke.process_fs import ProcessFS as process_fs
 
 
-@pytest.fixture
-def get_factory_provider(mock_map_yaml_env_vars):
-    return FactoryProvider(persist_fs, process_fs)
+def test_load(get_map_yaml_path):
+    Config(get_map_yaml_path, persist_fs)
 
 
-def test_provide__pass(get_factory_provider):
-    actual: ConfigMap = get_factory_provider.provide().config_map
-    assert str(actual.get_books_path).endswith("/repo")
-    assert str(actual.get_download_engine_path).endswith(
-        "./safaribooks.git/safaribooks.py"
-    )
-    assert str(actual.get_download_engine_books_path).endswith(
-        "./safaribooks.git/Books"
-    )
-    assert str(actual.get_oreilly_username).endswith("username")
-    assert str(actual.get_oreilly_userpassword).endswith("userpassword")
+def test_get_type(get_map_yaml_path):
+    actual = Config(get_map_yaml_path, persist_fs)
+    assert actual.get_type == SAFARI_BOOKS
+
+
+def test_load_config_map_pass(get_map_yaml_path):
+    ConfigMap(get_map_yaml_path, persist_fs)
+
+
+def test_load_config_map_fail_0(get_unsupported_map_yaml_path):
+    with pytest.raises(UnsupportedConfigMap):
+        ConfigMap(get_unsupported_map_yaml_path, persist_fs)
+
+
+def test_load_config_map_fail_1(get_full_path_map_yaml_path):
+    with pytest.raises(NotRelativeBooksPath):
+        ConfigMap(get_full_path_map_yaml_path, persist_fs)

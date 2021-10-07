@@ -9,6 +9,8 @@ from shutil import copyfile
 from typing import List
 import yaml
 
+PREFIX_RELATIVE_FOLDER = "./"
+
 
 class PersistFS:
     """persist_fs."""
@@ -61,7 +63,7 @@ class PersistFS:
 
     @staticmethod
     def is_relative_path(path):
-        if str(path).startswith("./"):
+        if str(path).startswith(PREFIX_RELATIVE_FOLDER):
             return True
         return False
 

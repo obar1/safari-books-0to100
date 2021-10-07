@@ -5,7 +5,7 @@ from processors.help_processor import HelpProcessor, VERSION
 from tests.moke.persist_fs import PersistFS as persist_fs
 from tests.moke.process_fs import ProcessFS as process_fs
 
-CURR_VERSION = "0.2.9"
+CURR_VERSION = "0.3"
 
 
 def test_process(

@@ -19,12 +19,12 @@ class HelpProcessor:
         """read file and return the version"""
         txt = self.persist_fs.read_file(change_log_relative_path)
         version = max(sorted(filter(lambda f: VERSION in f, txt)))
-        logging.debug(f"v. {version}")
         return version.strip()
 
     def process(self):
         """Get version."""
-        logging.debug(self.supported_processor)
-        return self.get_version(
+        version = self.get_version(
             self.persist_fs.dir_name(__file__) + "/../../changelog.md"
         )
+        logging.info(f"Help ({version}) available options: {self.supported_processor}")
+        return version

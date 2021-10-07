@@ -44,6 +44,7 @@ class SBFactory:
             elif cmd == "help":
                 yield self.help_processor()
             else:
+                yield self.help_processor()
                 yield self.unsupported_processor(cmd)
 
     def create_meta_book_processor(self, http_url):

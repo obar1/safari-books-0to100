@@ -16,7 +16,7 @@ class Toc:
     ):
         """init"""
         self.config_map = config_map
-        self.readme_md = config_map.get_books_path + "/toc.md"
+        self.readme_md = "./toc.md"
         self.persist_fs = persist_fs
         self.process_fs = process_fs
         self.meta_books = meta_books

@@ -3,7 +3,7 @@
 import pytest
 
 from configs.config import ConfigMap, Config, SAFARI_BOOKS
-from exceptions.errors import NotRelativeBooksPath, UnsupportedConfigMap
+from exceptions.errors import UnsupportedConfigMap
 from tests.moke.persist_fs import PersistFS as persist_fs
 
 
@@ -23,8 +23,3 @@ def test_load_config_map_pass(get_map_yaml_path):
 def test_load_config_map_fail_0(get_unsupported_map_yaml_path):
     with pytest.raises(UnsupportedConfigMap):
         ConfigMap(get_unsupported_map_yaml_path, persist_fs)
-
-
-def test_load_config_map_fail_1(get_full_path_map_yaml_path):
-    with pytest.raises(NotRelativeBooksPath):
-        ConfigMap(get_full_path_map_yaml_path, persist_fs)

@@ -1,4 +1,4 @@
-# safari books 0 to 100
+# Safari books 0 to 100
 
 simple way to keep books organized
 
@@ -6,42 +6,27 @@ simple way to keep books organized
 
 check latest tag val latest at https://github.com/obar1/safari-books-0to100/tags
 
-or https://raw.githubusercontent.com/obar1/safari-books-0to100/master/changelog.md like so
-
 ```bash
 curl https://raw.githubusercontent.com/obar1/safari-books-0to100/master/changelog.md | grep version | sort -r | head -1
 ```
-
-in a any tmp folder get the `setup.sh` like so
+- create a local folder
+- get the `setup.sh` like so
+- use the `setup.sh` with the tag
 
 ```bash
+mkdir -p /tmp/repo
+cd /tmp/repo
 wget -q https://raw.githubusercontent.com/obar1/safari-books-0to100/master/setup.sh
-```
-
-and use it like so
-
-```bash
-bash setup.sh $tag $target_dir
+bash setup.sh $tag
 #ex
-# bash setup.sh 0.3 ./lib
+# bash setup.sh 0.3
 ```
 check contents of  `yaml` file for the download engine and oreilly usr/pwd
 
 ```bash
 cat map.yaml
 ```
-![](0c5c6efa-7588-496d-b61f-d760ace537dc.png)
 
-
-### Py Env
-* Activate your py env
-* Install Poetry: <https://python-poetry.org/docs/#installation>
-* Install package and dependencies: `poetry install`
-
-![](b9779202-502a-42e6-a1d6-48d4ea7d1e60.png)
-
-* Install https://github.com/lorenzodifuccia/safaribooks :)
-> don't forget pip install req :P he is not using poetry
 
 ## Daily usage
 
@@ -102,14 +87,17 @@ pre-commit run flake8
 pre-commit run isort
 pre-commit run pylint
 ```
-### Local troubleshooting...
 
-add to `setup.sh` something like
-```bash
-# DEBUG
-cp -r $HOME/git/obar1/pyproject-template.git/ "${DIR_TARGET_LATEST}" || true
-```
-so you can test local fix :)
+
+### Py Env
+* Activate your py env
+* Install Poetry: <https://python-poetry.org/docs/#installation>
+* Install package and dependencies: `poetry install`
+
+![](b9779202-502a-42e6-a1d6-48d4ea7d1e60.png)
+
+* Install https://github.com/lorenzodifuccia/safaribooks :)
+> don't forget pip install req :P he is not using poetry
 
 ### Continuous pytest
 

@@ -31,7 +31,6 @@ get_code(){
   cd "${DIR_TARGET}"
 
   wget https://raw.githubusercontent.com/obar1/${ZEROto100}/master/${ZEROto100}/tests/resources/map.yaml
-  sed -i '' -e "s|./books|$DIR_TARGET|g" map.yaml
   wget -qO- https://github.com/obar1/${ZEROto100}/archive/refs/tags/${TAG}.tar.gz | tar -xvf -
 
   cd -
